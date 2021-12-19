@@ -94,7 +94,7 @@ const SignupForm = () => {
             placeholder='Password'
             required
           />
-          <button className='signupForm__btn' type='submit'>Sign Up</button>
+          <button className='signupForm__btn' type='submit'>Join Upcamp</button>
         </form>
       </div>
       <div className='signupForm__footer'>
