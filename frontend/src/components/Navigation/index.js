@@ -9,8 +9,8 @@ const Navigation = () => {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton />
-    )
+      <ProfileButton user={sessionUser} />
+    );
   } else {
     sessionLinks = (
       <>
@@ -21,7 +21,7 @@ const Navigation = () => {
           <NavLink to='/signup'>Sign Up</NavLink>
         </li>
       </>
-    )
+    );
   }
 
   return (

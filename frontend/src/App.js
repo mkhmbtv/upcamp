@@ -17,7 +17,7 @@ function App() {
 
   return isLoaded && (
     <>
-      <Navigation />
+      <Navigation/>
       <Routes>
         <Route path='/' element={<h1>Home</h1>} />
         <Route path='/login' element={<LoginForm />} />
