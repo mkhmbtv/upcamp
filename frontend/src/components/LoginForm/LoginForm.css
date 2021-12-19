@@ -1,0 +1,120 @@
+.loginForm {
+  width: 33.2rem;
+  box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-grey-light-1);
+}
+
+.loginForm__container {
+  padding: 1.5rem;
+}
+
+.loginForm__header {
+  text-align: center;
+  line-height: 3rem;
+  font-size: 2.3rem;
+}
+
+.loginForm__header--sub{
+  color: var(--color-grey-dark-1);
+  font-size: 65%;
+  font-weight: 400;
+}
+
+.btnContainer {
+  margin-top: 2.1rem;
+}
+
+.loginForm__strike::before {
+  height: 1px;
+  content: '';
+  width: 100%;
+  background-color: var(--color-grey-light-1);
+  display: block;
+  margin-right: 1.5rem;
+}
+
+.loginForm__strike {
+  display: flex;
+  align-items: center;
+  margin: .8rem 0 1rem;
+}
+
+.loginForm__strike::after {
+  height: 1px;
+  content: '';
+  width: 100%;
+  background-color: var(--color-grey-light-1);
+  display: block;
+  margin-left: 1.5rem;
+}
+
+.loginForm__error {
+  color: #e03131;
+}
+
+.loginForm__errors {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.loginForm__input {
+  width: 100%;
+  height: 6.7rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  outline: none;
+  padding: 1.6rem;
+  margin-bottom: 10px;
+  border: 1px solid var(--color-grey-dark-2);
+}
+
+.loginForm__input:last-of-type {
+  margin-bottom: 2.1rem;
+}
+
+.loginForm__input::placeholder {
+  color: var(--color-black);
+}
+
+.loginForm__footer {
+  padding: 1.5rem;
+  background-color: var(--color-grey-light-2);
+  text-align: center;
+  font-size: 1.37rem;
+}
+
+.loginForm__btn {
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: var(--color-secondary-light);
+  border-radius: 3px;
+  transition: all .2s;
+}
+
+.loginForm__btn:hover {
+  transform: translateY(-.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.loginForm__btn:active {
+  transform: translateY(-.1rem);
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.loginForm__btn--demo {
+  background-color: var(--color-tertiary-light);
+  margin-top: 3rem;
+}
+
+.loginForm__link {
+  margin-left: 5px;
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom .25s;
+}
+
+.loginForm__link:hover {
+  border-bottom: 1px solid var(--color-grey-dark-2);
+}

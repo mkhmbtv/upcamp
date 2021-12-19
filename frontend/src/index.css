@@ -1,1 +1,56 @@
 /* TODO Add site wide styles */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --color-primary: #2b8a3e;
+  --color-secondary-light: #40d9ac;
+  --color-secondary-dark: #00C585;
+  --color-tertiary-light: #fcc419;
+  --color-tertiary-dark: #e67700;
+  --color-grey-light-1: #ebebeb;
+  --color-grey-light-2: #f9f9f9;
+  --color-grey-dark-1: #777;
+  --color-grey-dark-2: #333;
+  --color-white: #fff;
+  --color-black: #000;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--color-grey-dark);
+  line-height: 1.42;
+}
+
+a,
+a:visited, 
+a:hover, 
+a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  color: var(--color-white);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+}
