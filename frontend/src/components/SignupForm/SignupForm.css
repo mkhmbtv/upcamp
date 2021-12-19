@@ -1,0 +1,9 @@
+.signupForm__input-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.signupForm__header {
+  margin-bottom: 3rem;
+}

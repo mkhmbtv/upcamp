@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { restoreUser } from './store/session';
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App() {
    <Routes>
      <Route path='/' element={<h1>Home</h1>} />
      <Route path='/login' element={<LoginForm />} />
+     <Route path='/signup' element={<SignupForm />} />
    </Routes>
   );
 }
