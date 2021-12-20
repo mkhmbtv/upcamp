@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getSessionUser } from "../../store/session";
 import ProfileButton from "./ProfileButton";
+import AuthModal from '../AuthModal';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -16,10 +17,10 @@ const Navigation = () => {
     sessionLinks = (
       <>
         <li className='navbar__item'>
-          <NavLink to='/login'>Log In</NavLink>
+          <AuthModal modal='login' />
         </li>
         <li className='navbar__item'>
-          <NavLink to='/signup'>Sign Up</NavLink>
+          <AuthModal modal='signup' />
         </li>
       </>
     );

@@ -1,7 +1,6 @@
 .loginForm, 
 .signupForm {
   width: 33.2rem;
-  box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.2);
   border: 1px solid var(--color-grey-light-1);
   background-color: var(--color-white);
 }
@@ -117,9 +116,10 @@
 .loginForm__link,
 .signupForm__link {
   margin-left: 5px;
-  font-weight: 700;
   border-bottom: 1px solid transparent;
   transition: border-bottom .25s;
+  background: none;
+  color: inherit;
 }
 
 .loginForm__link:hover,
