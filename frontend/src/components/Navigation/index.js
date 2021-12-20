@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getSessionUser } from "../../store/session";
 import ProfileButton from "./ProfileButton";
+import './Navigation.css';
 
 const Navigation = () => {
   const sessionUser = useSelector(getSessionUser);
@@ -14,10 +15,10 @@ const Navigation = () => {
   } else {
     sessionLinks = (
       <>
-        <li>
+        <li className='navbar__item'>
           <NavLink to='/login'>Log In</NavLink>
         </li>
-        <li>
+        <li className='navbar__item'>
           <NavLink to='/signup'>Sign Up</NavLink>
         </li>
       </>
@@ -25,12 +26,12 @@ const Navigation = () => {
   }
 
   return (
-    <ul>
-        <li>
-          <NavLink to='/'>Home</NavLink>
-        </li>
+    <nav className='navbar'>
+      <NavLink to='/' className='navbar__logo'>UPCAMP</NavLink>
+      <ul className='navbar__list'>
         {sessionLinks}
-    </ul>
+      </ul>
+    </nav>
   )
 };
 

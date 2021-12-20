@@ -1,0 +1,76 @@
+.navbar {
+  height: 7rem;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar__logo {
+  font-weight: 900;
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  font-family: 'Nunito';
+  color: var(--color-primary) !important;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  position: relative;
+}
+
+.navbar__list .navbar__item {
+  font-weight: 500;
+  padding: .2rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+}
+
+.navbar__list .navbar__item:hover {
+  border-bottom: 2px solid var(--color-secondary-dark);
+}
+
+.profileBtn {
+  font-size: 2.5rem;
+  color: var(--color-secondary-dark);
+  background: none;
+}
+
+.profileDropdown {
+  background-color: white;
+  position: absolute;
+  right: 0;
+  top: 5rem;
+  padding: 1.5rem;
+  border-radius: 2px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.profileDropdown__item {
+  border-bottom: 1px solid var(--color-grey-light-1);
+  padding: 1rem;
+  width: 20rem;
+}
+
+.profileDropdown__item--userInfo {
+  font-size: 1.4rem;
+}
+
+.profileDropdown__item--userInfo span {
+  color: var(--color-grey-dark-1);
+}
+
+.profileDropdown li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profileDropdown button {
+  background: none;
+  color: inherit;
+  font-weight: 400;
+  font-size: 1.6rem;
+}

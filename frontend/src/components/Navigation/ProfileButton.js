@@ -29,19 +29,19 @@ const ProfileButton = ({ user }) => {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="las la-campground"></i>
+      <button className='profileBtn' onClick={openMenu}>
+        <i class="las la-user-circle"></i>
       </button>
       {showMenu && (
-        <ul>
-          <li>
+        <ul className='profileDropdown'>
+          <li className='profileDropdown__item profileDropdown__item--userInfo'>
             <strong>{user.firstName} {user.lastName}</strong>
             <br />
             <span>{user.email}</span>
           </li>
-          <li>Trips</li>
-          <li>
-            <button onClick={logout}>Logout</button>
+          <li className='profileDropdown__item'>Trips</li>
+          <li className='profileDropdown__item'>
+            <button onClick={logout}>Log out</button>
           </li>
         </ul>
       )}
