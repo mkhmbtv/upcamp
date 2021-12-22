@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   Spot.associate = function(models) {
     Spot.belongsTo(models.User, { foreignKey: 'userId' });
     Spot.belongsTo(models.SpotType, { foreignKey: 'spotTypeId' });
+    Spot.hasMany(models.Image, { foreignKey: 'spotId' });
   };
   return Spot;
 };
