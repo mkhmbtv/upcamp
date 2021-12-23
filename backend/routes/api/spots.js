@@ -16,9 +16,8 @@ const spotNotFoundError = (id) => {
 router.get(
   '/', 
   asyncHandler(async (req, res) => {
-    const spots = await Spot.scope('fullSpot').findAll();
-    
-    res.json(spots);
+    const spots = await Spot.findAll();
+    res.json({ spots });
   }),
 );
 
@@ -31,7 +30,7 @@ router.get('/:id(\\d+)',
       return next(spotNotFoundError(spotId));
     }
 
-    res.json(spot);
+    res.json({ spot });
   }),
 );
 
@@ -45,8 +44,7 @@ router.post(
       const amenity = await Amenity.findByPk(amenityId);
       await spot.addAmenity(amenity);
     });
-    const fullSpot = await Spot.scope('fullSpot').findByPk(spot.id);
-    res.json({ spot: fullSpot });
+    res.json({ spot });
   }),
 );
 

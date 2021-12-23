@@ -30,7 +30,7 @@ const ProfileButton = ({ user }) => {
   return (
     <>
       <button className='profileBtn' onClick={openMenu}>
-        <i class="las la-user-circle"></i>
+        <i className="las la-user-circle"></i>
       </button>
       {showMenu && (
         <ul className='profileDropdown'>
