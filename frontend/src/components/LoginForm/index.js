@@ -36,7 +36,7 @@ const LoginForm = ({ onClick }) => {
           <br />
           <small className='loginForm__header--sub'>Let's get you outside</small>
         </h2>
-        <button className='loginForm__btn loginForm__btn--demo' onClick={handleDemoLogin}>Demo User</button>
+        <button className='btn loginForm__btn loginForm__btn--demo' onClick={handleDemoLogin}>Demo User</button>
         <div className='loginForm__strike'>
           or
         </div>
@@ -62,12 +62,12 @@ const LoginForm = ({ onClick }) => {
             placeholder='Password'
             required
           />
-          <button className='loginForm__btn' type='submit'>Log In</button>
+          <button className='btn loginForm__btn' type='submit'>Log In</button>
         </form>
       </div>
       <div className='loginForm__footer'>
         Don't have an Upcamp account?
-        <button className='loginForm__link' onClick={onClick}>Sign Up</button>
+        <button className='btn loginForm__link' onClick={onClick}>Sign Up</button>
       </div>
     </div>
   )

@@ -91,16 +91,17 @@
   padding: 1.5rem;
   background-color: var(--color-secondary-light);
   border-radius: 3px;
-  transition: all .2s;
   margin-top: 1.1rem;
 }
 
-.loginForm__btn:hover,
-.signupForm__btn:hover {
+.btn:hover {
   transform: translateY(-.3rem);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
+.btn:active {
+  transform: translateY(-.1rem);
+}
 .loginForm__btn:active,
 .signupForm__btn:active {
   transform: translateY(-.1rem);

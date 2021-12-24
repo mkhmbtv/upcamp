@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Card = ({ id, type }) => {
-  const navigate = useNavigate();
-
   let imageUrl;
   switch (type) {
     case 'Tent camping':
@@ -16,7 +14,7 @@ const Card = ({ id, type }) => {
       imageUrl = 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640352321/upcamp_assets/photo-1587061949409-02df41d5e562_awupm3.jpg';
       break;
     case 'Treehouse':
-      imageUrl ='https://res.cloudinary.com/djogxk6nz/image/upload/v1640352550/upcamp_assets/photo-1550355191-aa8a80b41353_pva0p3.jpg';
+      imageUrl ='https://res.cloudinary.com/djogxk6nz/image/upload/v1640382820/upcamp_assets/photo-1618767689160-da3fb810aad7_wpw0uo.jpg';
       break;
     case 'Glamping':
       imageUrl = 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640352687/upcamp_assets/photo-1624254495476-db6cc8b77e98_misugf.jpg';
@@ -26,11 +24,11 @@ const Card = ({ id, type }) => {
   }
 
   return (
-    <div className='card' onClick={() => navigate(`/spots/types/${id}`)}>
-      <div>
-        <img className='card__image' src={imageUrl} alt='camping-type' />
-      </div>
-      <h3>{type} spots</h3>
+    <div className='card'>
+      <Link className='card__link' to={`/spots/types/${id}`}>
+          <img className='card__image' src={imageUrl} alt='camping-type' />
+          <h3 className='card__text'>{type} spots</h3>
+      </Link>
     </div>
   )
 };

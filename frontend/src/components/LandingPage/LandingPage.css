@@ -1,0 +1,105 @@
+header {
+  height: 95vh;
+  background-image: 
+    linear-gradient(
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.6)),
+    url('https://res.cloudinary.com/djogxk6nz/image/upload/v1640371234/upcamp_assets/photo-1504280390367-361c6d9f38f4_c9tpuh.jpg');
+  background-size: cover;
+  background-position: top;
+}
+
+.header__textBox {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.header__heading {
+  color: var(--color-white);
+  margin-bottom: 6rem;
+}
+
+.header__heading--main {
+  display: block;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.header__heading--sub {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn--white {
+  padding: 1.4rem 4rem;
+  background-color: var(--color-white);
+  border-radius: 10rem;
+  text-align: center;
+  font-weight: 300;
+}
+
+.btn--white::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+  background-color: var(--color-white);
+}
+
+.btn--white:hover::after {
+  transform: scale(1.4, 1.6);
+  opacity: 0;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card__image {
+  width: 36.2rem;
+  height: 36.4rem;
+  border-radius: 3rem;
+  object-fit: cover;
+  overflow: hidden;
+  transition: all .2s;
+}
+
+.card__image:hover {
+  transform: translateY(-.7rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.card__text {
+  font-size: 2.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary-dark);
+}
+
+.sectionTypes {
+  padding: 4rem 7rem;
+}
+
+.sectionTypes > h2 {
+  color: var(--color-primary-dark);
+  margin-bottom: 3.2rem;
+  margin-top: 4rem;
+  font-size: 2.8rem;
+  font-weight: 500;
+  text-align: center;
+}

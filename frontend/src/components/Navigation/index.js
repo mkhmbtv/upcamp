@@ -5,7 +5,7 @@ import ProfileButton from "./ProfileButton";
 import AuthModal from '../AuthModal';
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = ({ isLanding }) => {
   const sessionUser = useSelector(getSessionUser);
 
   let sessionLinks;
@@ -16,10 +16,10 @@ const Navigation = () => {
   } else {
     sessionLinks = (
       <>
-        <li className='navbar__item'>
+        <li style={isLanding ? { color: '#fff'} : null} className='navbar__item'>
           <AuthModal modal='login' />
         </li>
-        <li className='navbar__item'>
+        <li style={isLanding ? { color: '#fff' } : null} className='navbar__item'>
           <AuthModal modal='signup' />
         </li>
       </>

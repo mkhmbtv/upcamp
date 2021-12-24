@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: fixed;
 }
 
 .navbar__logo {
@@ -12,7 +13,7 @@
   font-size: 2.8rem;
   letter-spacing: 3px;
   font-family: 'Nunito';
-  color: var(--color-primary) !important;
+  color: var(--color-primary-light) !important;
 }
 
 .navbar__list {
@@ -28,11 +29,16 @@
   transition: all .2s;
 }
 
-.navbar__item > button {
+.navbar__item > .btn {
   background: none;
   font-size: 1.6rem;
   color: inherit;
   font-weight: 500;
+}
+
+.navbar__item > .btn:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .navbar__item:hover {
@@ -43,6 +49,8 @@
   font-size: 2.5rem;
   color: var(--color-secondary-dark);
   background: none;
+  cursor: pointer;
+  border: none;
 }
 
 .profileDropdown {
@@ -79,4 +87,6 @@
   color: inherit;
   font-weight: 400;
   font-size: 1.6rem;
+  cursor: pointer;
+  border: none;
 }

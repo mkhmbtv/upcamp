@@ -25,7 +25,7 @@ const AuthModal = ({ modal }) => {
 
   return (
     <>
-      <button onClick={openModal}>
+      <button className='btn' onClick={openModal}>
         {modal === 'login' ? 'Log In' : 'Sign Up'}
       </button>
       {showLoginModal && (
