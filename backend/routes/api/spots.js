@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Spot, Amenity } = require('../../db/models');
+const { Spot, Amenity, SpotType } = require('../../db/models');
 
 const router = express.Router();
 
@@ -45,6 +45,14 @@ router.post(
       await spot.addAmenity(amenity);
     });
     res.json({ spot });
+  }),
+);
+
+router.get(
+  '/types', 
+  asyncHandler(async (req, res)=> {
+    const types = await SpotType.findAll({ order: ['id'] });
+    res.json({ types });
   }),
 );
 

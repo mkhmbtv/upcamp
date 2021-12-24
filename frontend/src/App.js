@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { restoreUser } from './store/session';
 import Navigation from './components/Navigation';
+import LandingPage from './components/LandingPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function App() {
     <>
       <Navigation/>
       <Routes>
-        <Route path='/' element={<h1>Home</h1>} />
+        <Route path='/' element={<LandingPage />} />
       </Routes>
    </>
   );
