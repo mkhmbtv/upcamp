@@ -23,7 +23,7 @@ const LandingPage = () => {
             <span className='header__heading--main'>Find yourself outside.</span>
             <span className='header__heading--sub'>Discover and book tent camping, RV parks, cabins, treehouses and glamping.</span>
           </h1>
-          <Link to='/spots' className='btn btn--white'>Discover our spots</Link>
+          <Link to='/spots' className='btn btn--white'>Discover our campsites</Link>
         </div>
       </header>
       <section className='sectionTypes'>

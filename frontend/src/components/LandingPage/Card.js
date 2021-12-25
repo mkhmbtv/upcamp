@@ -27,7 +27,7 @@ const Card = ({ id, type }) => {
     <div className='card'>
       <Link className='card__link' to={`/spots/types/${id}`}>
           <img className='card__image' src={imageUrl} alt='camping-type' />
-          <h3 className='card__text'>{type} spots</h3>
+          <h3 className='card__text'>{type} sites</h3>
       </Link>
     </div>
   )

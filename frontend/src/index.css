@@ -36,7 +36,6 @@ body {
   font-weight: 400;
   color: var(--color-grey-dark-2);
   line-height: 1.42;
-  background-color: var(--color-grey-light-3);
 }
 
 ul {
