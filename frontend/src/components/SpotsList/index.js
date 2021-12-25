@@ -16,13 +16,15 @@ const SpotsList = ({ byType }) => {
   const type = useSelector((state) => state.spots.types.find(type => type.id === Number(typeId)));
   
   useEffect(() => {
+    if (byType) {
+      dispatch(getSpotTypes());
+    } 
     dispatch(getSpots());
-    dispatch(getSpotTypes());
-  }, [dispatch]);
+  }, [dispatch, byType]);
 
   return (
     <div className='spots'>
-      <h2 className='spots__heading'>{byType ? `${type.type} sites` : 'All campsites'}</h2>
+      <h2 className='spots__heading'>{type? `${type.type} sites` : 'All campsites'}</h2>
       <div className='spots__list'>
         {spots.map((spot) => (
           <SpotBox key={spot.id} spot={spot} />
