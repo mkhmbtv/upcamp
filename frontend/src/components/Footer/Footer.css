@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--color-grey-dark-2);
+  height: 5rem;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.la-github {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.la-github:hover {
+  color: var(--color-grey-dark-1);
+}

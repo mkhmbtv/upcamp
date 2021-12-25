@@ -5,6 +5,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { restoreUser } from './store/session';
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
       </Routes>
+      <Footer />
    </>
   );
 }
