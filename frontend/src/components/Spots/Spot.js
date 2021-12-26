@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const SpotBox = ({ spot }) => {
+const Spot = ({ spot }) => {
   return (
       <div className='spot'>
         <Link className='spot__link' to={`/spots/${spot.id}`}>
@@ -15,4 +15,4 @@ const SpotBox = ({ spot }) => {
   );
 };
 
-export default SpotBox;
+export default Spot;

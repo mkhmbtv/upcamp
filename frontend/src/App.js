@@ -6,8 +6,8 @@ import { restoreUser } from './store/session';
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
-import SpotsList from './components/SpotsList';
-import Spot from './components/Spot';
+import Spots from './components/Spots';
+import SpotDetail from './components/SpotDetail';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +24,9 @@ function App() {
         {pathname === '/' ? null : <Navigation />}
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/spots' element={<SpotsList />} />
-          <Route path='/spots/types/:typeId' element={<SpotsList />} />
-          <Route path='/spots/:id' element={<Spot />} />
+          <Route path='/spots' element={<Spots />} />
+          <Route path='/spots/types/:typeId' element={<Spots />} />
+          <Route path='/spots/:id' element={<SpotDetail />} />
         </Routes>
       </div>
       <Footer />

@@ -1,0 +1,76 @@
+.swiper {
+  padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+  height: 79vh;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.swiper-button-next {
+  right: 2rem;
+}
+
+.swiper-button-prev {
+  left: 2rem;
+}
+
+.campspot__overview {
+  width: 100.8rem;
+  margin: 0 auto;
+}
+
+.campspot__info {
+  margin-bottom: 4rem;
+}
+
+.campsite__locationLink {
+  border-bottom: 1px solid var(--color-grey-light-1);
+  transition: all .2s;
+}
+
+.campsite__locationLink:hover {
+  border-bottom: 1px solid var(--color-grey-dark-2);
+}
+
+.campspot__name {
+  margin-bottom: 2.5rem;
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+
+.campspot__hostAndDescription {
+  display: flex;
+  border-top: 1px solid var(--color-grey-light-1);
+  padding-top: 2rem;
+  width: 70rem;
+  align-items: flex-start;
+}
+
+.campspot__host {
+  display: flex;
+  align-items: center;
+  margin-right: 6rem;
+}
+
+.campspot__userpic {
+  width: 6rem;
+  height: 6rem;
+  margin-right: 1.5rem;
+}
+
+.campspot__description {
+  width: 40.8rem;
+}
+
+.campspot__hostName span{
+  display: block;
+}
+
+.campspot__hostName span:first-child {
+  font-weight: 500;
+}

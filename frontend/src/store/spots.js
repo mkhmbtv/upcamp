@@ -63,7 +63,10 @@ const spotsReducer = (state = initialState, action) => {
       newState.types = action.types;
       return newState;
     case ADD_ONE_SPOT:
-      newState.list[action.spot.id] = action.spot;
+      newState.list = {
+        ...state.list,
+        [action.spot.id]: action.spot,
+      };
       return newState;
     default:
       return state;

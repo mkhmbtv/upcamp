@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { getSpots, getSpotTypes } from '../../store/spots';
-import SpotBox from './SpotBox';
-import './SpotsList.css';
+import Spot from './Spot';
+import './Spots.css';
 
-const SpotsList = () => {
+const Spots
+ = () => {
   const { typeId } = useParams();
   const dispatch = useDispatch();
   const spots = useSelector((state) => {
@@ -27,11 +28,12 @@ const SpotsList = () => {
       <h2 className='spots__heading'>{type? `${type.type} sites` : 'All campsites'}</h2>
       <div className='spots__list'>
         {spots.map((spot) => (
-          <SpotBox key={spot.id} spot={spot} />
+          <Spot key={spot.id} spot={spot} />
         ))}
       </div>
     </section>
   )
 };
 
-export default SpotsList;
+export default Spots
+;
