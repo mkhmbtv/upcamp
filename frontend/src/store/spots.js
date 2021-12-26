@@ -37,7 +37,7 @@ export const getOneSpot = (id) => async (dispatch) => {
   const data = await res.json();
   dispatch(addOneSpot(data.spot));
   return res;
-}
+};
 
 export const getSpotTypes = () => async (dispatch) => {
   const res = await csrfFetch('/api/spots/types');
