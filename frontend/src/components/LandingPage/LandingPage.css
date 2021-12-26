@@ -7,6 +7,7 @@ header {
     url('https://res.cloudinary.com/djogxk6nz/image/upload/v1640371234/upcamp_assets/photo-1504280390367-361c6d9f38f4_c9tpuh.jpg');
   background-size: cover;
   background-position: top;
+  position: relative;
 }
 
 .header__textBox {
@@ -41,6 +42,7 @@ header {
   border-radius: 10rem;
   text-align: center;
   font-weight: 300;
+  position: relative;
 }
 
 .btn--white::after {

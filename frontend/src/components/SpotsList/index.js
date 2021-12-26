@@ -5,32 +5,32 @@ import { getSpots, getSpotTypes } from '../../store/spots';
 import SpotBox from './SpotBox';
 import './SpotsList.css';
 
-const SpotsList = ({ byType }) => {
+const SpotsList = () => {
   const { typeId } = useParams();
   const dispatch = useDispatch();
   const spots = useSelector((state) => {
-    return byType
+    return typeId
       ? Object.values(state.spots.list).filter(spot => spot.spotTypeId === Number(typeId))
       : Object.values(state.spots.list); 
   });
   const type = useSelector((state) => state.spots.types.find(type => type.id === Number(typeId)));
   
   useEffect(() => {
-    if (byType) {
+    if (typeId) {
       dispatch(getSpotTypes());
     } 
     dispatch(getSpots());
-  }, [dispatch, byType]);
+  }, [dispatch, typeId]);
 
   return (
-    <div className='spots'>
+    <section className='spots'>
       <h2 className='spots__heading'>{type? `${type.type} sites` : 'All campsites'}</h2>
       <div className='spots__list'>
         {spots.map((spot) => (
           <SpotBox key={spot.id} spot={spot} />
         ))}
       </div>
-    </div>
+    </section>
   )
 };
 

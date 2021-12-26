@@ -20,15 +20,17 @@ function App() {
   
   return isLoaded && (
     <>
-      {pathname === '/' ? null : <Navigation />}
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/spots' element={<SpotsList />} />
-        <Route path='/spots/types/:typeId' element={<SpotsList byType={true} />} />
-        <Route path='/spots/:id' element={<Spot />} />
-      </Routes>
+      <div id='content'>
+        {pathname === '/' ? null : <Navigation />}
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/spots' element={<SpotsList />} />
+          <Route path='/spots/types/:typeId' element={<SpotsList />} />
+          <Route path='/spots/:id' element={<Spot />} />
+        </Routes>
+      </div>
       <Footer />
-   </>
+    </>
   );
 }
 
