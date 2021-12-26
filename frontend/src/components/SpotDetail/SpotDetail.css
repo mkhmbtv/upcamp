@@ -74,3 +74,32 @@
 .campspot__hostName span:first-child {
   font-weight: 500;
 }
+
+.campspot__infoCards {
+  display: flex;
+  width: 70rem;
+}
+
+.infoCard {
+  padding: 1.5rem .5rem 1.5rem 1.5rem;
+  border: 1px solid var(--color-grey-light-1);
+  margin: 0 1rem 2rem 1rem;
+  width: 22rem;
+  border-radius: 2px;
+}
+
+.infoCard__heading {
+  margin: 0 0 1rem .4rem;
+}
+
+.infoCard__info {
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.infoCard__icon {
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
