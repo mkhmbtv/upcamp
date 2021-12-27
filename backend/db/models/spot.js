@@ -55,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     Spot.belongsTo(models.SpotType, { foreignKey: 'spotTypeId', as: 'spotType' });
     Spot.hasMany(models.Image, { foreignKey: 'spotId', as: 'images' });
     Spot.hasMany(models.Booking, { foreignKey: 'spotId', as: 'bookings' });
+    Spot.hasMany(models.Review, { foreignKey: 'spotId', as: 'reviews' });
     Spot.belongsToMany(models.Amenity, {
       through: 'SpotAmenity',
       otherKey: 'amenityId',
