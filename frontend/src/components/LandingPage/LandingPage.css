@@ -45,6 +45,15 @@ header {
   position: relative;
 }
 
+.btn--white:hover {
+  transform: translateY(-.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white:active {
+  transform: translateY(-.1rem);
+}
+
 .btn--white::after {
   content: '';
   display: inline-block;

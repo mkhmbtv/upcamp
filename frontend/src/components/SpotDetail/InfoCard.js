@@ -17,12 +17,6 @@ const InfoCard = ({ heading, items, guestNum, spotType }) => {
           </div>
           <p>Up to {guestNum} guests per site</p>
         </div>
-        <div className='infoCard__info'>
-          <div className='infoCard__icon'>
-            <i class="las la-parking"></i>
-          </div>
-          <p>Park at listing</p>
-        </div>
       </div>
     )
   }

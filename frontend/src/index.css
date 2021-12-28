@@ -50,6 +50,10 @@ a:focus {
   color: inherit;
 }
 
+label {
+  display: block;
+}
+
 .btn {
   color: var(--color-white);
   text-align: center;

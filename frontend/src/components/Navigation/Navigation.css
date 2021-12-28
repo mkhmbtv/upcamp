@@ -60,6 +60,7 @@
   padding: 1.5rem;
   border-radius: 2px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
 }
 
 .profileDropdown__item {
