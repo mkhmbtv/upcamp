@@ -54,7 +54,7 @@ router.post(
       startDate,
       endDate,
     } = req.body;
-    console.log('USER', req.user.id)
+    
     const booking = await Booking.create({
       userId: req.user.id,
       spotId,
@@ -65,6 +65,53 @@ router.post(
 
     res.json({ booking });
   }),
-)
+);
+
+const bookingNotFoundError = (id) => {
+  const err = new Error(`Booking with the id of ${id} could not be found.`);
+  err.title = 'Booking not found.';
+  err.errors = [`Booking with the id of ${id} could not be found.`];
+  err.status = 404;
+  return err;
+};
+
+router.put(
+  '/:id(\\d+)',
+  validateBooking,
+  asyncHandler(async (req, res, next) => {
+    const bookingId = parseInt(req.params.id, 10);
+    const {
+      spotId,
+      numGuests,
+      startDate,
+      endDate,
+    } = req.body;
+
+    const booking = await Booking.findByPk(bookingId);
+    if (!booking) return next(bookingNotFoundError(bookingId));
+
+    await booking.update({
+      userId: req.user.id,
+      spotId,
+      numGuests,
+      startDate,
+      endDate,
+    });
+
+    res.json({ booking });
+  }),
+);
+
+router.delete(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res, next) => {
+    const bookingId = parseInt(req.params.id, 10);
+    const booking = await Booking.findByPk(bookingId);
+    if (!booking) return next(bookingNotFoundError(bookingId));
+
+    await booking.destroy();
+    res.json({ message: "success" });
+  }),
+);
 
 module.exports = router;
