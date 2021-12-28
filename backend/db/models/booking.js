@@ -16,10 +16,16 @@ module.exports = (sequelize, DataTypes) => {
     startDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+      validate: {
+        isDate: true,
+      }
     },
     endDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+      validate: {
+        isDate: true,
+      },
     },
   }, {});
   Booking.associate = function(models) {
