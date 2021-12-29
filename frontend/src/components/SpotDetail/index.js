@@ -26,13 +26,13 @@ const SpotDetail = () => {
     <section className='campspot'>
       <ImageSlider images={campspot.images} />
       <div className='campspot__overview'>
+        <Booking spotId={campspot.id} price={campspot.pricePerNight} maxGuests={campspot.maxCapacity} />
         <SpotInfo campspot={campspot} />
         <div className='campspot__infoCards'>
           <InfoCard heading='Campsite Area' guestNum={campspot.maxCapacity} spotType={campspot.spotType.type} />
           <InfoCard heading='Essentials' items={essentials} />
           <InfoCard heading='Amenities' items={amenities} />
         </div>
-        <Booking spotId={campspot.id} price={campspot.pricePerNight} maxGuests={campspot.maxCapacity} />
       </div>
     </section>
   )

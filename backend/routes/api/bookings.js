@@ -19,10 +19,10 @@ router.get(
 
 const validateBooking = [
   check('startDate')
-    .isDate()
+    .isISO8601()
     .withMessage('Please provide a valid check-in date.'),
   check('endDate')
-    .isDate()
+    .isISO8601()
     .withMessage('Please provide a valid check-out date.')
     .custom((value, { req }) => {
       const startDate = new Date(req.body.startDate);

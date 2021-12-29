@@ -1,11 +1,13 @@
 .booking {
   width: 32rem;
-  position: absolute;
-  top: -5rem;
-  right: 0;
+  position: sticky;
+  top: 0;
+  margin: -6rem -10rem 0 0;
   border: 1px solid var(--color-grey-light-1);
   z-index: 99;
   background-color: var(--color-white);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  float: right;
 }
 
 .booking__header {
@@ -106,6 +108,11 @@
   border: 3px solid var(--color-secondary-light);
   background-color: var(--color-white);
   color: var(--color-secondary-light);
+}
+
+.booking__errors {
+  padding: 1rem 1rem 0 1rem;
+  color: #e03131;
 }
 
 .react-datepicker {

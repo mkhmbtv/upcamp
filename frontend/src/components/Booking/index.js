@@ -1,19 +1,38 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
+import { addBooking } from '../../store/bookings';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Booking.css';
 
 const Booking = ({ spotId, price, maxGuests }) => {
   const guestNums = [ ...Array(maxGuests).keys() ].map(i => i + 1);
-  const [checkInDate, setCheckInDate] = useState('');
-  const [checkOutDate, setCheckOutDate] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [numGuests, setNumGuests] = useState(1);
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setErrors([]);
+    const booking = {
+      spotId,
+      startDate,
+      endDate,
+      numGuests,
+    };
+    
+    return dispatch(addBooking(booking))
+      .then(() => navigate('/'))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
-
+ 
   return (
     <div className='booking'>
       <form className='booking__form' onSubmit={handleSubmit}>
@@ -27,8 +46,8 @@ const Booking = ({ spotId, price, maxGuests }) => {
               Check in
             </label>
             <DatePicker
-              selected={checkInDate}
-              onChange={(date) => setCheckInDate(date)}
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
               minDate={new Date()}
               dateFormat="yyyy/MM/dd"
               placeholderText='Select date'
@@ -40,8 +59,8 @@ const Booking = ({ spotId, price, maxGuests }) => {
               Check out
             </label>
             <DatePicker
-              selected={checkOutDate}
-              onChange={(date) => setCheckOutDate(date)}
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
               minDate={new Date()}
               dateFormat="yyyy/MM/dd"
               placeholderText='Select date'
@@ -53,14 +72,23 @@ const Booking = ({ spotId, price, maxGuests }) => {
           <label htmlFor='guests'>
             Guests
           </label>
-          <select id='guests' value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+          <select 
+            id='guests' 
+            value={numGuests} 
+            onChange={(e) => setNumGuests(e.target.value)}
+          >
             {guestNums.map((num) => (
               <option key={num} value={num}>{num} {num === 1 ? 'guest' : 'guests'}</option>
             ))}
           </select>
-          <div className='booking__btnContainer'>
-            <button className='btn booking__btn' type='submit'>Instant Book</button>
-          </div>
+        </div>
+        <ul className='booking__errors'>
+          {errors.map((err, i) => (
+            <li key={i} className='booking__error'>{err}</li>
+          ))}
+        </ul>
+        <div className='booking__btnContainer'>
+          <button className='btn booking__btn' type='submit'>Instant Book</button>
         </div>
       </form>
     </div>

@@ -15,8 +15,8 @@ const Icon = ({ iconTitle }) => {
           'Tent camping': <i className="las la-campground"></i>,
           'RV park': <i className="las la-shuttle-van"></i>,
           'Cabin': <i className="las la-home"></i>,
-          'Treehouse': <i class="las la-tree"></i>,
-          'Glamping': <i class="las la-glass-martini-alt"></i>
+          'Treehouse': <i className="las la-tree"></i>,
+          'Glamping': <i className="las la-glass-martini-alt"></i>
         }[iconTitle]
       }
     </>
