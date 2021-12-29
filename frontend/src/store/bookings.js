@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 const LOAD_BOOKINGS = 'bookings/loadBookings';
 const ADD_ONE_BOOKING = 'bookings/addOneBooking';
 
-const loadBookings = (bookings) => {
+const load = (bookings) => {
   return {
     type: LOAD_BOOKINGS,
     bookings
@@ -17,17 +17,17 @@ const addOneBooking = (booking) => {
   };
 };
 
-export const load = () => async (dispatch) => {
+export const getBookings = () => async (dispatch) => {
   const res = await csrfFetch('/api/bookings');
   const data = await res.json();
 
   if (res.ok) {
-    dispatch(loadBookings(data.bookings));
+    dispatch(load(data.bookings));
   }
   return data;
 };
 
-export const addBooking = (booking) => async (dispatch) => {
+export const book = (booking) => async (dispatch) => {
   const { spotId, numGuests, startDate, endDate } = booking;
   
   const res = await csrfFetch('/api/bookings', {

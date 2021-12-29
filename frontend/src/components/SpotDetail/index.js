@@ -5,7 +5,7 @@ import { getOneSpot } from "../../store/spots";
 import ImageSlider from "./ImageSlider";
 import SpotInfo from "./SpotInfo";
 import InfoCard from "./InfoCard";
-import Booking from "../Booking";
+import BookingForm from "../BookingForm";
 import './SpotDetail.css';
 
 const SpotDetail = () => {
@@ -26,7 +26,7 @@ const SpotDetail = () => {
     <section className='campspot'>
       <ImageSlider images={campspot.images} />
       <div className='campspot__overview'>
-        <Booking spotId={campspot.id} price={campspot.pricePerNight} maxGuests={campspot.maxCapacity} />
+        <BookingForm spotId={campspot.id} price={campspot.pricePerNight} maxGuests={campspot.maxCapacity} />
         <SpotInfo campspot={campspot} />
         <div className='campspot__infoCards'>
           <InfoCard heading='Campsite Area' guestNum={campspot.maxCapacity} spotType={campspot.spotType.type} />

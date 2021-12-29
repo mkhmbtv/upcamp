@@ -16,7 +16,7 @@ const spotNotFoundError = (id) => {
 router.get(
   '/', 
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll({ include: ['images'] });
+    const spots = await Spot.scope('withImages').findAll();
     res.json({ spots });
   }),
 );

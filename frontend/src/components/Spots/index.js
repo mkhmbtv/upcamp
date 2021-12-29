@@ -5,8 +5,7 @@ import { getSpots, getSpotTypes } from '../../store/spots';
 import Spot from './Spot';
 import './Spots.css';
 
-const Spots
- = () => {
+const Spots = () => {
   const { typeId } = useParams();
   const dispatch = useDispatch();
   const spots = useSelector((state) => {
@@ -32,8 +31,7 @@ const Spots
         ))}
       </div>
     </section>
-  )
+  );
 };
 
-export default Spots
-;
+export default Spots;

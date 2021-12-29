@@ -12,7 +12,10 @@ router.use(requireAuth);
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const bookings = await Booking.findAll({ where: { userId: req.user.id } });
+    const bookings = await Booking.findAll({ 
+      where: { userId: req.user.id },
+      include: [{ model: Spot.scope('withImages'), as: 'spot' }],
+    });
     res.json({ bookings });
   }),
 );

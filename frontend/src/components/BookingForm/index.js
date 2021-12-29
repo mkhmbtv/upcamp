@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { addBooking } from '../../store/bookings';
+import { book } from '../../store/bookings';
+import { getSessionUser } from '../../store/session';
 import 'react-datepicker/dist/react-datepicker.css';
-import './Booking.css';
+import './BookingForm.css';
 
-const Booking = ({ spotId, price, maxGuests }) => {
+const BookingForm = ({ spotId, price, maxGuests }) => {
   const guestNums = [ ...Array(maxGuests).keys() ].map(i => i + 1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const sessionUser = useSelector(getSessionUser);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [numGuests, setNumGuests] = useState(1);
@@ -25,8 +27,8 @@ const Booking = ({ spotId, price, maxGuests }) => {
       numGuests,
     };
     
-    return dispatch(addBooking(booking))
-      .then(() => navigate('/'))
+    return dispatch(book(booking))
+      .then(() => navigate(`/${sessionUser.id}/bookings`))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -95,4 +97,4 @@ const Booking = ({ spotId, price, maxGuests }) => {
   );
 };
 
-export default Booking;
+export default BookingForm;

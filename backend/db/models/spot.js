@@ -62,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'spotId',
       as: 'amenities',
     });
+    Spot.addScope('withImages', { include: ['images'] });
     Spot.addScope('fullSpot', {
       include: [
         { model: models.User.scope('currentUser'), as: 'user' },
