@@ -36,64 +36,62 @@ const BookingForm = ({ spotId, price, maxGuests }) => {
   };
  
   return (
-    <div className='booking'>
-      <form className='booking__form' onSubmit={handleSubmit}>
-        <div className='booking__header'>
-          <span className='booking__price'>${price}</span>
-          <span className='booking__perNight'>per night ({numGuests} {numGuests === 1 ? 'guest' : 'guests'})</span>
-        </div>
-        <div className='booking__dates'>
-          <div className='booking__dateInput'>
-            <label htmlFor='date'>
-              Check in
-            </label>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              minDate={new Date()}
-              dateFormat="yyyy/MM/dd"
-              placeholderText='Select date'
-              id='date'
-            />
-          </div>
-          <div className='booking__dateInput'>
-            <label htmlFor='date'>
-              Check out
-            </label>
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              minDate={new Date()}
-              dateFormat="yyyy/MM/dd"
-              placeholderText='Select date'
-              id='date'
-            />
-          </div>
-        </div>
-        <div className='booking__selectMenu'>
-          <label htmlFor='guests'>
-            Guests
+    <form className='bookingForm' onSubmit={handleSubmit}>
+      <div className='bookingForm__header'>
+        <span className='bookingForm__price'>${price}</span>
+        <span className='bookingForm__perNight'>per night ({numGuests} {numGuests === 1 ? 'guest' : 'guests'})</span>
+      </div>
+      <div className='bookingForm__dates'>
+        <div className='bookingForm__dateInput'>
+          <label htmlFor='date'>
+            Check in
           </label>
-          <select 
-            id='guests' 
-            value={numGuests} 
-            onChange={(e) => setNumGuests(e.target.value)}
-          >
-            {guestNums.map((num) => (
-              <option key={num} value={num}>{num} {num === 1 ? 'guest' : 'guests'}</option>
-            ))}
-          </select>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            minDate={new Date()}
+            dateFormat="yyyy/MM/dd"
+            placeholderText='Select date'
+            id='date'
+          />
         </div>
-        <ul className='booking__errors'>
-          {errors.map((err, i) => (
-            <li key={i} className='booking__error'>{err}</li>
+        <div className='bookingForm__dateInput'>
+          <label htmlFor='date'>
+            Check out
+          </label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            minDate={new Date()}
+            dateFormat="yyyy/MM/dd"
+            placeholderText='Select date'
+            id='date'
+          />
+        </div>
+      </div>
+      <div className='bookingForm__selectMenu'>
+        <label htmlFor='guests'>
+          Guests
+        </label>
+        <select
+          id='guests'
+          value={numGuests}
+          onChange={(e) => setNumGuests(e.target.value)}
+        >
+          {guestNums.map((num) => (
+            <option key={num} value={num}>{num} {num === 1 ? 'guest' : 'guests'}</option>
           ))}
-        </ul>
-        <div className='booking__btnContainer'>
-          <button className='btn booking__btn' type='submit'>Instant Book</button>
-        </div>
-      </form>
-    </div>
+        </select>
+      </div>
+      <ul className='bookingForm__errors'>
+        {errors.map((err, i) => (
+          <li key={i} className='bookingForm__error'>{err}</li>
+        ))}
+      </ul>
+      <div className='bookingForm__btnContainer'>
+        <button className='btn bookingForm__btn' type='submit'>Instant Book</button>
+      </div>
+    </form>
   );
 };
 

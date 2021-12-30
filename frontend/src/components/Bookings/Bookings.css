@@ -1,0 +1,132 @@
+.dashboard {
+  display: flex;
+  padding: 5.5rem 1rem 2rem 12rem;
+}
+
+.dashboard__bookings {
+  padding-left: 4rem;
+}
+
+.dashboard__bookings > h2 {
+  border-bottom: 3px solid var(--color-secondary-light);
+  display: inline-block;
+  margin-bottom: 5rem;
+}
+
+.userProfile {
+  padding: 0 1rem;
+}
+
+.userProfile__block {
+  width: 28rem;
+  padding: 2rem;
+  border: 1px solid var(--color-grey-light-1);
+  margin-bottom: 1.5rem;
+}
+
+.userProfile__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.userProfile__avatar {
+  margin-right: 1rem;
+  width: 8.8rem;
+  height: 8.8rem;
+}
+
+.userProfile__name {
+  font-size: 2rem;
+}
+
+.userProfile__basicInfo {
+  font-size: 1.3rem;
+}
+
+.userProfile__trusted {
+  margin-bottom: .5rem;
+  color: var(--color-grey-dark-1);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.la-heart,
+.la-check-circle {
+  margin-right: 1rem;
+  font-size: 1.6rem;
+}
+
+.booking {
+  border: 1px solid var(--color-grey-light-1);
+  margin-bottom: 4rem;
+  box-shadow: 0 .2rem .2rem rgba(0, 0, 0, 0.15);
+}
+
+.booking__img {
+  width: 60rem;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.booking__info {
+  padding: 3rem;
+  padding-top: .5rem;
+}
+
+
+.booking__spotName {
+  border-bottom: 1px solid var(--color-grey-light-1);
+  display: inline;
+  transition: all .2s;
+  margin-bottom: .5rem;
+}
+
+.booking__spotName:hover {
+  border-bottom: 1px solid var(--color-grey-dark-1);
+}
+
+.booking__location {
+  margin-top: .5rem;
+  font-size: 1.4rem;
+}
+
+.booking__location span{
+  border-bottom: 1px solid var(--color-grey-light-1);
+}
+ 
+.booking__btnGroup {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn--small {
+  width: 9rem;
+  margin-right: 1rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.btn--red {
+  background-color: #ff6b6b;
+}
+
+.btn--red:hover {
+  color: #ff6b6b;
+  border: 3px solid #ff6b6b;
+}
+
+.btn--min {
+  background: none;
+  color: var(--color-grey-dark-2);
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-grey-light-1);
+  font-size: 1.5rem;
+  transition: all .2s;
+}
+
+.btn--min:hover {
+  border: 1px solid var(--color-grey-dark-2);
+}

@@ -1,4 +1,4 @@
-.booking {
+.bookingForm {
   width: 32rem;
   position: sticky;
   top: 0;
@@ -10,37 +10,37 @@
   float: right;
 }
 
-.booking__header {
+.bookingForm__header {
   padding: 1.3rem 1rem;
 }
 
-.booking__price {
+.bookingForm__price {
   display: block;
   font-size: 2.4rem;
   font-weight: 900;
 }
 
-.booking__perNight {
+.bookingForm__perNight {
   color: var(--color-grey-dark-1);
   font-size: 1.5rem;
 }
 
-.booking__dates {
+.bookingForm__dates {
   display: flex;
   position: relative;
 }
 
-.booking__dates .booking__dateInput:first-child #date {
+.bookingForm__dates .bookingForm__dateInput:first-child #date {
   border-left: none;
 }
 
-.booking__dateInput,
-.booking__selectMenu {
+.bookingForm__dateInput,
+.bookingForm__selectMenu {
   position: relative;
 }
 
-.booking__dateInput label,
-.booking__selectMenu label {
+.bookingForm__dateInput label,
+.bookingForm__selectMenu label {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -48,7 +48,7 @@
   font-weight: 500;
 }
 
-.booking__selectMenu label {
+.bookingForm__selectMenu label {
   z-index: 0;
 }
 
@@ -92,11 +92,11 @@
   transition: all .2s;
 }
 
-.booking__btnContainer {
+.bookingForm__btnContainer {
   padding: 1rem;
 }
 
-.booking__btn {
+.bookingForm__btn {
   padding: 1rem 1.5rem;
   border: 3px solid transparent;
   background-color: var(--color-secondary-light);
@@ -104,13 +104,13 @@
   font-size: 1.6rem;
 }
 
-.booking__btn:hover {
+.bookingForm__btn:hover {
   border: 3px solid var(--color-secondary-light);
   background-color: var(--color-white);
   color: var(--color-secondary-light);
 }
 
-.booking__errors {
+.bookingForm__errors {
   padding: 1rem 1rem 0 1rem;
   color: #e03131;
 }
