@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const LOAD_BOOKINGS = 'bookings/loadBookings';
 const ADD_ONE_BOOKING = 'bookings/addOneBooking';
+const REMOVE_ONE_BOOKING = 'boookings/removeOneBooking';
 
 const load = (bookings) => {
   return {
@@ -14,6 +15,13 @@ const addOneBooking = (booking) => {
   return {
     type: ADD_ONE_BOOKING,
     booking,
+  };
+};
+
+const removeOneBooking = (id) => {
+  return {
+    type: REMOVE_ONE_BOOKING,
+    id,
   };
 };
 
@@ -47,7 +55,7 @@ export const book = (booking) => async (dispatch) => {
 
 export const editBooking = (booking) => async (dispatch) => {
   const { spotId, numGuests, startDate, endDate } = booking;
-  console.log('BOOOKING:', booking)
+
   const res = await csrfFetch(`/api/bookings/${booking.id}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -63,6 +71,11 @@ export const editBooking = (booking) => async (dispatch) => {
   return res;
 };
 
+export const cancelBooking = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/bookings/${id}`, { method: 'DELETE' });
+  if (res.ok) dispatch(removeOneBooking(id));
+};
+
 const initialState = {};
 
 const bookingsReducer = (state = initialState, action) => {
@@ -75,6 +88,9 @@ const bookingsReducer = (state = initialState, action) => {
       return newState;
     case ADD_ONE_BOOKING:
       newState[action.booking.id] = action.booking;
+      return newState;
+    case REMOVE_ONE_BOOKING:
+      delete newState[action.id];
       return newState;
     default:
       return state;

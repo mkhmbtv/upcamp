@@ -1,8 +1,12 @@
 import { Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import EditBookingFormModal from '../EditBookingFormModal';
+import { cancelBooking } from '../../store/bookings';
 
 const Booking = ({ booking }) => {
+  const dispatch = useDispatch();
   if (!booking.spot) return null;
+
   const imageUrl = booking.spot.images[0].url;
 
   return (
@@ -16,7 +20,12 @@ const Booking = ({ booking }) => {
         <div className='booking__btnGroup'>
           <div>
             <EditBookingFormModal booking={booking} />
-            <button className='btn bookingForm__btn btn--small btn--red'>Cancel</button>
+            <button 
+              className='btn bookingForm__btn btn--small btn--red'
+              onClick={() => dispatch(cancelBooking(booking.id))}
+            >
+              Cancel
+            </button>
           </div>
           <Link to={`/spots/${booking.spotId}`} className='btn btn--min'>Trip page</Link>
         </div>
