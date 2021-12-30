@@ -45,6 +45,24 @@ export const book = (booking) => async (dispatch) => {
   return res;
 };
 
+export const editBooking = (booking) => async (dispatch) => {
+  const { spotId, numGuests, startDate, endDate } = booking;
+  console.log('BOOOKING:', booking)
+  const res = await csrfFetch(`/api/bookings/${booking.id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      spotId,
+      numGuests,
+      startDate,
+      endDate,
+    }),
+  });
+
+  const data = await res.json();
+  dispatch(addOneBooking(data.booking));
+  return res;
+};
+
 const initialState = {};
 
 const bookingsReducer = (state = initialState, action) => {

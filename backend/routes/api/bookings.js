@@ -90,7 +90,9 @@ router.put(
       endDate,
     } = req.body;
 
-    const booking = await Booking.findByPk(bookingId);
+    const booking = await Booking.findByPk(bookingId, {
+      include: [{ model: Spot.scope('withImages'), as: 'spot' }],
+    });
     if (!booking) return next(bookingNotFoundError(bookingId));
 
     await booking.update({
