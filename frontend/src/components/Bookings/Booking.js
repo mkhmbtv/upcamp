@@ -3,12 +3,18 @@ import { useDispatch } from 'react-redux';
 import EditBookingFormModal from '../EditBookingFormModal';
 import { cancelBooking } from '../../store/bookings';
 
-const Booking = ({ booking }) => {
+const parseDate = (dateString) => {
+  return new Date(dateString).toLocaleString('en-us', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+};
+
+const Booking = ({ booking, upcoming }) => {
   const dispatch = useDispatch();
   if (!booking.spot) return null;
 
   const imageUrl = booking.spot.images[0].url;
-
+  const startDate = parseDate(booking.startDate);
+  const endDate = parseDate(booking.endDate);
+  
   return (
     <div className='booking'>
       <img className='booking__img' src={imageUrl} alt='campspot view' />
@@ -17,16 +23,28 @@ const Booking = ({ booking }) => {
         <p className='booking__location'>
           in <span>{booking.spot.city}, {booking.spot.state}</span>
         </p>
-        <div className='booking__btnGroup'>
-          <div>
-            <EditBookingFormModal booking={booking} />
-            <button 
-              className='btn bookingForm__btn btn--small btn--red'
-              onClick={() => dispatch(cancelBooking(booking.id))}
-            >
-              Cancel
-            </button>
+        <div className='booking__details'>
+          <div className='booking__detail'>
+            <p className='booking__detail--name'>Trip dates</p>
+            <p className='booking__detail--content'>{startDate} to {endDate}</p>
           </div>
+          <div className='booking__detail'>
+            <p className='booking__detail--name'>Group size</p>
+            <p className='booking__detail--content'>Confirmed for {booking.numGuests} people</p>
+          </div>
+        </div>
+        <div className='booking__btnGroup'>
+          {upcoming && (
+            <div>
+              <EditBookingFormModal booking={booking} />
+              <button 
+                className='btn bookingForm__btn btn--small btn--red'
+                onClick={() => dispatch(cancelBooking(booking.id))}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
           <Link to={`/spots/${booking.spotId}`} className='btn btn--min'>Trip page</Link>
         </div>
       </div>

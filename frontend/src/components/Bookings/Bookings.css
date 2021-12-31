@@ -1,16 +1,27 @@
 .dashboard {
   display: flex;
-  padding: 5.5rem 1rem 2rem 12rem;
+  padding: 5.5rem 1rem 8rem 12rem;
 }
 
 .dashboard__bookings {
   padding-left: 4rem;
 }
 
-.dashboard__bookings > h2 {
+.dashboard__basic {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.dashboard__trips {
   border-bottom: 3px solid var(--color-secondary-light);
   display: inline-block;
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
+}
+
+.dashboard__heading {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 
 .userProfile {
@@ -74,12 +85,28 @@
   padding-top: .5rem;
 }
 
+.booking__details {
+  margin-top: 1.2rem;
+}
+
+.booking__detail:first-child {
+  margin-bottom: 1rem;
+}
+
+.booking__detail {
+  font-size: 1.5rem;
+}
+
+.booking__detail--name {
+  font-weight: 500;
+}
 
 .booking__spotName {
   border-bottom: 1px solid var(--color-grey-light-1);
   display: inline;
   transition: all .2s;
   margin-bottom: .5rem;
+  font-weight: 500;
 }
 
 .booking__spotName:hover {
@@ -99,6 +126,7 @@
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .btn--small {
@@ -125,6 +153,7 @@
   border: 1px solid var(--color-grey-light-1);
   font-size: 1.5rem;
   transition: all .2s;
+  margin-left: auto;
 }
 
 .btn--min:hover {
