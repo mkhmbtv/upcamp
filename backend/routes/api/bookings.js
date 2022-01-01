@@ -1,10 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
 
 const { Booking, Spot } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { handleValidationErrors } = require('../../utils/validation');
+const { validateBooking } = require('../utils/validators');
+const { resourceNotFoundError } = require('../utils/errors');
 
 const router = express.Router();
 router.use(requireAuth);
@@ -19,33 +19,6 @@ router.get(
     res.json({ bookings });
   }),
 );
-
-const validateBooking = [
-  check('startDate')
-    .isISO8601()
-    .withMessage('Please provide a valid check-in date.'),
-  check('endDate')
-    .isISO8601()
-    .withMessage('Please provide a valid check-out date.')
-    .custom((value, { req }) => {
-      const startDate = new Date(req.body.startDate);
-      const endDate = new Date(value);
-      if (endDate <= startDate) throw new Error('Check-out date must be after check-in date');
-      return true;
-    }),
-  check('numGuests')
-    .exists({ checkFalsy: true })
-    .isInt()
-    .custom((value, { req }) => {
-      return Spot.findOne({ where: { id: req.body.spotId } })
-        .then((spot) => {
-          if (value > spot.maxCapacity) {
-            return Promise.reject('Provided number of guests exceeds the maximum capacity');
-          }
-        })
-    }),
-  handleValidationErrors,
-];
 
 router.post(
   '/',
@@ -70,21 +43,12 @@ router.post(
   }),
 );
 
-const bookingNotFoundError = (id) => {
-  const err = new Error(`Booking with the id of ${id} could not be found.`);
-  err.title = 'Booking not found.';
-  err.errors = [`Booking with the id of ${id} could not be found.`];
-  err.status = 404;
-  return err;
-};
-
 router.put(
   '/:id(\\d+)',
   validateBooking,
   asyncHandler(async (req, res, next) => {
     const bookingId = parseInt(req.params.id, 10);
     const {
-      spotId,
       numGuests,
       startDate,
       endDate,
@@ -93,11 +57,9 @@ router.put(
     const booking = await Booking.findByPk(bookingId, {
       include: [{ model: Spot.scope('withImages'), as: 'spot' }],
     });
-    if (!booking) return next(bookingNotFoundError(bookingId));
+    if (!booking) return next(resourceNotFoundError('Booking', bookingId));
 
     await booking.update({
-      userId: req.user.id,
-      spotId,
       numGuests,
       startDate,
       endDate,
@@ -112,7 +74,7 @@ router.delete(
   asyncHandler(async (req, res, next) => {
     const bookingId = parseInt(req.params.id, 10);
     const booking = await Booking.findByPk(bookingId);
-    if (!booking) return next(bookingNotFoundError(bookingId));
+    if (!booking) return next(resourceNotFoundError('Booking', bookingId));
 
     await booking.destroy();
     res.json({ message: "success" });
