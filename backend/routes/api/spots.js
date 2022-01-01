@@ -1,7 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 
 const { Spot, Amenity, SpotType, Review } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -69,6 +72,38 @@ router.get(
     });
 
     res.json({ reviews });
+  }),
+);
+
+const validateReview = [
+  check('body')
+    .exists({ checkFalsy: true })
+    .withMessage('Please enter your review.'),
+  check('recommended')
+    .isBoolean()
+    .withMessage('Recommended is not a boolean value'),
+  handleValidationErrors,
+];
+
+router.post(
+  '/:id(\\d+)/reviews',
+  requireAuth,
+  validateReview,
+  asyncHandler(async (req, res, next) => {
+    const spotId = parseInt(req.params.id, 10);
+    const spot = await Spot.findByPk(spotId);
+    if (!spot) return next(spotNotFoundError(spotId));
+
+    const { title, body, recommended } = req.body;
+    const review = await Review.create({
+      userId: req.user.id,
+      spotId,
+      title,
+      body,
+      recommended,
+    });
+
+    res.json({ review });
   }),
 );
 
