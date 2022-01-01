@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Spot, Amenity, SpotType } = require('../../db/models');
+const { Spot, Amenity, SpotType, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -53,6 +53,22 @@ router.get(
   asyncHandler(async (req, res)=> {
     const types = await SpotType.findAll({ order: ['id'] });
     res.json({ types });
+  }),
+);
+
+router.get(
+  '/:id(\\d+)/reviews', 
+  asyncHandler(async (req, res, next) => {
+    const spotId = parseInt(req.params.id, 10);
+    const spot = await Spot.findByPk(spotId);
+    if (!spot) return next(spotNotFoundError(spotId));
+
+    const reviews = await Review.findAll({
+      where: { spotId },
+      include: ['user'],
+    });
+
+    res.json({ reviews });
   }),
 );
 
