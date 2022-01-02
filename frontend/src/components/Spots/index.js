@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { getSpots, getSpotTypes } from '../../store/spots';
+import { getSpots } from '../../store/spots';
+import { getSpotTypes } from '../../store/spotTypes';
 import Spot from './Spot';
 import './Spots.css';
 
@@ -10,10 +11,10 @@ const Spots = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => {
     return typeId
-      ? Object.values(state.spots.list).filter(spot => spot.spotTypeId === Number(typeId))
-      : Object.values(state.spots.list); 
+      ? Object.values(state.spots.byId).filter(spot => spot.spotTypeId === Number(typeId))
+      : Object.values(state.spots.byId); 
   });
-  const type = useSelector((state) => state.spots.types.find(type => type.id === Number(typeId)));
+  const type = useSelector((state) => state.spotTypes.byId[typeId]);
   
   useEffect(() => {
     if (typeId) {

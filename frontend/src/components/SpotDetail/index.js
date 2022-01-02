@@ -11,7 +11,7 @@ import './SpotDetail.css';
 const SpotDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const campspot = useSelector((state) => state.spots.list[id]);
+  const campspot = useSelector((state) => state.spots.byId[id]);
  
   useEffect(() => {
     dispatch(getOneSpot(id));

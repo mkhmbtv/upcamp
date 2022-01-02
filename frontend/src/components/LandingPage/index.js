@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getSpotTypes } from '../../store/spots';
+import { getSpotTypes } from '../../store/spotTypes';
 import Navigation from '../Navigation';
 import Card from './Card';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const spotTypes = useSelector((state) => state.spots.types);
+  const spotTypes = useSelector((state) => Object.values(state.spotTypes.byId));
 
   useEffect(() => {
     dispatch(getSpotTypes());

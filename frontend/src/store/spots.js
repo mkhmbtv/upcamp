@@ -1,20 +1,12 @@
 const { csrfFetch } = require('./csrf');
 
-const LOAD_SPOTS = 'spots/loadSpots';
-const LOAD_SPOT_TYPES = 'spots/loadSpotTypes';
+const SET_SPOTS = 'spots/setSpots';
 const ADD_ONE_SPOT = 'spots/addOneSpot';
 
-const load = (list) => {
+const setSpots = (spots) => {
   return {
-    type: LOAD_SPOTS,
-    list,
-  };
-};
-
-const loadTypes = (types) => {
-  return {
-    type: LOAD_SPOT_TYPES,
-    types,
+    type: SET_SPOTS,
+    spots,
   };
 };
 
@@ -28,7 +20,7 @@ const addOneSpot = (spot) => {
 export const getSpots = () => async (dispatch) => {
   const res = await csrfFetch('/api/spots');
   const data = await res.json();
-  dispatch(load(data.spots));
+  dispatch(setSpots(data.spots));
   return res;
 };
 
@@ -39,34 +31,30 @@ export const getOneSpot = (id) => async (dispatch) => {
   return res;
 };
 
-export const getSpotTypes = () => async (dispatch) => {
-  const res = await csrfFetch('/api/spots/types');
-  const data = await res.json();
-  dispatch(loadTypes(data.types));
-  return res;
-};
-
 const initialState = {
-  list: {},
-  types: []
+  byId: {},
+  allIds: [],
 };
 
 const spotsReducer = (state = initialState, action) => {
-  const newState = { ...state };
+  let newState = {};
   switch (action.type) {
-    case LOAD_SPOTS:
-      action.list.forEach((spot) => {
-        newState.list[spot.id] = spot;
+    case SET_SPOTS:
+      newState = { ...state };
+      action.spots.forEach((spot) => {
+        newState.byId[spot.id] = spot;
       });
-      return newState;
-    case LOAD_SPOT_TYPES:
-      newState.types = action.types;
+      newState.allIds = Object.keys(newState.byId);
       return newState;
     case ADD_ONE_SPOT:
-      newState.list = {
-        ...state.list,
-        [action.spot.id]: action.spot,
+      newState = {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.spot.id]: action.spot,
+        },
       };
+      newState.allIds = Object.keys(newState.byId);
       return newState;
     default:
       return state;
