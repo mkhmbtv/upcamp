@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 
-const Card = ({ id, type }) => {
+const Card = ({ id }) => {
+  const spotType = useSelector((state) => state.spotTypes.byId[id])
+
   let imageUrl;
-  switch (type) {
+  switch (spotType.type) {
     case 'Tent camping':
       imageUrl = 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640352272/upcamp_assets/photo-1537225228614-56cc3556d7ed_uein7i.jpg';
       break;
@@ -27,7 +30,7 @@ const Card = ({ id, type }) => {
     <div className='card'>
       <Link className='card__link' to={`/spots/types/${id}`}>
           <img className='card__image' src={imageUrl} alt='camping-type' />
-          <h3 className='card__text'>{type} sites</h3>
+          <h3 className='card__text'>{spotType.type} sites</h3>
       </Link>
     </div>
   )

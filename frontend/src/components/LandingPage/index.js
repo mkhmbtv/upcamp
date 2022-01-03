@@ -8,7 +8,7 @@ import './LandingPage.css';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const spotTypes = useSelector((state) => Object.values(state.spotTypes.byId));
+  const spotTypeIds = useSelector((state) => state.spotTypes.allIds);
 
   useEffect(() => {
     dispatch(getSpotTypes());
@@ -29,8 +29,8 @@ const LandingPage = () => {
       <section className='sectionTypes'>
         <h2>Find your next getaway</h2>
         <div className='cards'>
-          {spotTypes.map(spotType => (
-            <Card key={spotType.id} type={spotType.type} id={spotType.id} />
+          {spotTypeIds.map(spotTypeId => (
+            <Card key={spotTypeId} id={spotTypeId} />
           ))}
         </div>
       </section>
