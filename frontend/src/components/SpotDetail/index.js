@@ -6,6 +6,7 @@ import ImageSlider from "./ImageSlider";
 import SpotInfo from "./SpotInfo";
 import InfoCard from "./InfoCard";
 import BookingForm from "../BookingForm";
+import SpotReviews from "../SpotReviews";
 import './SpotDetail.css';
 
 const SpotDetail = () => {
@@ -33,6 +34,7 @@ const SpotDetail = () => {
           <InfoCard heading='Essentials' items={essentials} />
           <InfoCard heading='Amenities' items={amenities} />
         </div>
+        <SpotReviews spotId={campspot.id} />
       </div>
     </section>
   )

@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
         { model: models.SpotType, as: 'spotType', attributes: ['type'] },
         { model: models.Image, as: 'images', attributes: ['id', 'url'] },
         { model: models.Amenity, as: 'amenities', attributes: ['id', 'title', 'essential'], through: { attributes: [] } },
-        { model: models.Review, as: 'reviews' },
+        { model: models.Review, as: 'reviews', include: [{ model: models.User.scope('currentUser'), as: 'user' }] },
       ],
     })
   };
