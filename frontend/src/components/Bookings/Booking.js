@@ -2,12 +2,13 @@ import { Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import EditBookingFormModal from '../EditBookingFormModal';
 import { cancelBooking } from '../../store/bookings';
+import SpotReviewFormModal from '../SpotReviewFormModal';
 
 const parseDate = (dateString) => {
   return new Date(dateString).toLocaleString('en-us', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-const Booking = ({ booking, upcoming }) => {
+const Booking = ({ booking, upcoming, past }) => {
   const dispatch = useDispatch();
   if (!booking.spot) return null;
 
@@ -44,6 +45,9 @@ const Booking = ({ booking, upcoming }) => {
                 Cancel
               </button>
             </div>
+          )}
+          {past && (
+            <SpotReviewFormModal spotId={booking.spotId} />
           )}
           <Link to={`/spots/${booking.spotId}`} className='btn btn--min'>Trip page</Link>
         </div>

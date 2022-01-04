@@ -57,14 +57,22 @@
   margin-bottom: 1rem;
 }
 
-.review__recommended {
+.review__opinion {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.la-thumbs-up {
+.la-thumbs-up,
+.la-thumbs-down {
   font-size: 2.4rem;
   margin-right: 2px;
+}
+
+.la-thumbs-up {
   color: var(--color-secondary-light);
+}
+
+.la-thumbs-down {
+  color: var(--color-grey-dark-1);
 }

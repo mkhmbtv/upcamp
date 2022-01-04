@@ -37,7 +37,7 @@ const Bookings = () => {
         <div>
           {pastTrips.length > 0 && (
             pastTrips.map((trip) => (
-              <Booking key={trip.id} booking={trip} />
+              <Booking key={trip.id} booking={trip} past={true} />
             ))
           )}
         </div>

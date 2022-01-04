@@ -7,7 +7,7 @@ const SpotReviews = ({ spotId }) => {
 
   return (
     <div className='reviews'>
-      <h3 className='reviews__count'>{spotReviews.length} Reviews</h3>
+      <h3 className='reviews__count'>{spotReviews.length} {spotReviews.length === 1 ? 'Review' : 'Reviews'}</h3>
       {spotReviews.map((review) => (
         <SpotReview key={review.id} review={review} />
       ))}

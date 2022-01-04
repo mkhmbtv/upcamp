@@ -51,7 +51,7 @@ export const getOneSpot = (id) => async (dispatch) => {
 };
 
 export const writeReview = ({ spotId, title, body, recommended }) => async (dispatch) => {
-  const res =await csrfFetch(`/api/spots/${spotId}/reviews`, {
+  const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: 'POST',
     body: JSON.stringify({
       title,

@@ -7,14 +7,15 @@ const SpotReview = ({ review }) => {
       <div className='review__content'>
         <h4 className='review__title'>{review.title}</h4>
         <div className='review__info'>
-          <div>{review.recommended && (
-            <div className='review__recommended'>
-              <i className="las la-thumbs-up"></i>
+          <div>
+            <div className='review__opinion'>
+              {review.recommended ? <i className="las la-thumbs-up"></i> : <i className="las la-thumbs-down"></i>}
               <div>
-                <span className='review__authorName'>{review.user.firstName} {review.user.lastName.charAt(0)}.</span> recommends this listing
+                <span className='review__authorName'>{review.user.firstName} {review.user.lastName.charAt(0)}.</span>
+                {review.recommended ? 'recommends this listing.' : "doesn't recommend this listing."}
               </div>
             </div>
-          )}</div>
+          </div>
           <span className='review__date'>
             {date}
           </span>
