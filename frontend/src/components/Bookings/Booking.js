@@ -1,28 +1,49 @@
+import { useEffect, useState } from 'react';
 import { Link} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import EditBookingFormModal from '../EditBookingFormModal';
+import { useDispatch, useSelector } from 'react-redux';
 import { cancelBooking } from '../../store/bookings';
+import EditBookingFormModal from '../EditBookingFormModal';
 import SpotReviewFormModal from '../SpotReviewFormModal';
+import { getOneSpot } from '../../store/spots';
 
 const parseDate = (dateString) => {
   return new Date(dateString).toLocaleString('en-us', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-const Booking = ({ booking, upcoming, past }) => {
+const Booking = ({ bookingId, upcoming, past }) => {
   const dispatch = useDispatch();
-  if (!booking.spot) return null;
+  const booking = useSelector((state) => state.bookings.byId[bookingId]);
+  const spot = useSelector((state) => state.spots.byId[booking.spotId]);
+  const images = useSelector((state) => state.images.byId);
+  
+  const [imageUrl, setImageUrl] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const imageUrl = booking.spot.images[0].url;
+  useEffect(() => {
+    dispatch(getOneSpot(booking.spotId));
+  }, [dispatch, booking]);
+
+  useEffect(() => {
+    if (booking && spot && images) {
+      if (spot.Images) {
+        setImageUrl(images[spot.Images[0]].url);
+        setIsLoaded(true);
+      }
+    }
+  }, [booking, spot, images]);
+
   const startDate = parseDate(booking.startDate);
   const endDate = parseDate(booking.endDate);
+
+  if (!isLoaded) return null;
   
   return (
     <div className='booking'>
       <img className='booking__img' src={imageUrl} alt='campspot view' />
       <div className='booking__info'>
-        <Link className='booking__spotLink' to={`/spots/${booking.spotId}`}><h3 className='booking__spotName'>{booking.spot.name}</h3></Link>
+        <Link className='booking__spotLink' to={`/spots/${booking.spotId}`}><h3 className='booking__spotName'>{spot.name}</h3></Link>
         <p className='booking__location'>
-          in <span>{booking.spot.city}, {booking.spot.state}</span>
+          in <span>{spot.city}, {spot.state}</span>
         </p>
         <div className='booking__details'>
           <div className='booking__detail'>
@@ -35,9 +56,9 @@ const Booking = ({ booking, upcoming, past }) => {
           </div>
         </div>
         <div className='booking__btnGroup'>
-          {upcoming && (
+          {upcoming ? (
             <div>
-              <EditBookingFormModal booking={booking} />
+              <EditBookingFormModal booking={booking} spot={spot} />
               <button 
                 className='btn bookingForm__btn btn--small btn--red'
                 onClick={() => dispatch(cancelBooking(booking.id))}
@@ -45,10 +66,9 @@ const Booking = ({ booking, upcoming, past }) => {
                 Cancel
               </button>
             </div>
-          )}
-          {past && (
-            <SpotReviewFormModal spotId={booking.spotId} />
-          )}
+            )
+            : <SpotReviewFormModal spotId={booking.spotId} />
+          }
           <Link to={`/spots/${booking.spotId}`} className='btn btn--min'>Trip page</Link>
         </div>
       </div>

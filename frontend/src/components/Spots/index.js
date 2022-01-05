@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { getSpots } from '../../store/spots';
@@ -15,14 +15,25 @@ const Spots = () => {
       : Object.values(state.spots.byId); 
   });
   const type = useSelector((state) => state.spotTypes.byId[typeId]);
+
+  const [isLoaded, setIsLoaded] = useState(false);
   
+  useEffect(() => {
+    dispatch(getSpots());
+  }, [dispatch]);
+
   useEffect(() => {
     if (typeId) {
       dispatch(getSpotTypes());
-    } 
-    dispatch(getSpots());
+    }
   }, [dispatch, typeId]);
 
+  useEffect(() => {
+    if (spots) setIsLoaded(true);
+  }, [spots]);
+
+  if (!isLoaded) return null;
+  
   return (
     <section className='spots'>
       <h2 className='spots__heading'>{type? `${type.type} sites` : 'All campsites'}</h2>

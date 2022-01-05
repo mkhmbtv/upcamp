@@ -1,15 +1,16 @@
 import Icon from "./Icon";
 
-const InfoCard = ({ heading, items, guestNum, spotType }) => {
+const InfoCard = ({ heading, items, guestNum, type }) => {
+
   if (heading === 'Campsite Area') {
     return (
       <div className='infoCard'>
         <h3 className='infoCard__heading'>{heading}</h3>
         <div className='infoCard__info'>
           <div className='infoCard__icon'>
-            <Icon iconTitle={spotType} />
+            <Icon iconTitle={type} />
           </div>
-          <p>{spotType}</p>
+          <p>{type}</p>
         </div>
         <div className='infoCard__info'>
           <div className='infoCard__icon'>
@@ -18,10 +19,10 @@ const InfoCard = ({ heading, items, guestNum, spotType }) => {
           <p>Up to {guestNum} guests per site</p>
         </div>
       </div>
-    )
+    );
   }
-
-  return (
+  
+  return ( 
     <div className='infoCard'>
       <h3 className='infoCard__heading'>{heading}</h3>
       {items.map((item) => (

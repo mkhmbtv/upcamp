@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
@@ -13,26 +13,36 @@ const SpotDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const campspot = useSelector((state) => state.spots.byId[id]);
- 
+  const amenities = useSelector((state) => state.amenities.byId);
+  const images = useSelector((state) => state.images.byId);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(getOneSpot(id));
+    dispatch(getOneSpot(id))
   }, [dispatch, id]);
 
-  if (!(campspot && campspot.user)) return null;
+  useEffect(() => {
+    if (campspot && campspot.Images) setIsLoaded(true);
+  }, [campspot]);
 
-  const essentials = campspot.amenities.filter(a => a.essential);
-  const amenities = campspot.amenities.filter(a => !a.essential);
-  
+  if (!isLoaded) return null;
+
+  const spotImages = campspot.Images.map((imgId) => images[imgId]);
+  const spotAmenities = campspot.Amenities.map((amenityId) => amenities[amenityId]);
+  const essentials = spotAmenities.filter((amenity) => amenity.essential);
+  const other = spotAmenities.filter((amenity) => !amenity.essential);
+
   return (
     <section className='campspot'>
-      <ImageSlider images={campspot.images} />
+      <ImageSlider images={spotImages} />
       <div className='campspot__overview'>
         <BookingForm spotId={campspot.id} price={campspot.pricePerNight} maxGuests={campspot.maxCapacity} />
         <SpotInfo campspot={campspot} />
         <div className='campspot__infoCards'>
-          <InfoCard heading='Campsite Area' guestNum={campspot.maxCapacity} spotType={campspot.spotType.type} />
-          <InfoCard heading='Essentials' items={essentials} />
-          <InfoCard heading='Amenities' items={amenities} />
+          <InfoCard heading='Campsite Area' guestNum={campspot.maxCapacity} type={campspot.SpotType.type} />
+          <InfoCard heading='Essentials' items={essentials} isLoaded={isLoaded}/>
+          <InfoCard heading='Amenities' items={other} isLoaded={isLoaded}/>
         </div>
         <SpotReviews spotId={campspot.id} />
       </div>

@@ -1,6 +1,12 @@
-const SpotReview = ({ review }) => {
+import { useSelector } from "react-redux";
+
+const SpotReview = ({ reviewId }) => {
+  const review = useSelector((state) => state.reviews.byId[reviewId]);
+  const user = useSelector((state) => state.users.byId[review.userId]);
   const date = new Date(review.createdAt.split(' ')[0]).toLocaleString('en-us', { day: 'numeric', month: 'long', year: 'numeric' });
   
+  if (!user) return null;
+
   return (
     <div className='review'>
       <img className='review__reviewerAvatar' src="https://img.icons8.com/color/96/000000/test-account.png" alt='user pic' />
@@ -11,7 +17,7 @@ const SpotReview = ({ review }) => {
             <div className='review__opinion'>
               {review.recommended ? <i className="las la-thumbs-up"></i> : <i className="las la-thumbs-down"></i>}
               <div>
-                <span className='review__authorName'>{review.user.firstName} {review.user.lastName.charAt(0)}.</span>
+                <span className='review__authorName'>{user.firstName} {user.lastName.charAt(0)}.</span>
                 {review.recommended ? 'recommends this listing.' : "doesn't recommend this listing."}
               </div>
             </div>

@@ -3,13 +3,13 @@ import SpotReview from "./SpotReview";
 import './SpotReviews.css';
 
 const SpotReviews = ({ spotId }) => {
-  const spotReviews = useSelector((state) => Object.values(state.spots.byId[spotId].reviews));
+  const spotReviews = useSelector((state) => state.spots.byId[spotId].Reviews);
 
   return (
     <div className='reviews'>
       <h3 className='reviews__count'>{spotReviews.length} {spotReviews.length === 1 ? 'Review' : 'Reviews'}</h3>
-      {spotReviews.map((review) => (
-        <SpotReview key={review.id} review={review} />
+      {spotReviews.map((reviewId) => (
+        <SpotReview key={reviewId} reviewId={reviewId} />
       ))}
     </div>
   );

@@ -14,7 +14,6 @@ router.get(
   asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({ 
       where: { userId: req.user.id },
-      include: [{ model: Spot.scope('withImages'), as: 'spot' }],
     });
     res.json({ bookings });
   }),
@@ -54,9 +53,7 @@ router.put(
       endDate,
     } = req.body;
 
-    const booking = await Booking.findByPk(bookingId, {
-      include: [{ model: Spot.scope('withImages'), as: 'spot' }],
-    });
+    const booking = await Booking.findByPk(bookingId);
     if (!booking) return next(resourceNotFoundError('Booking', bookingId));
 
     await booking.update({

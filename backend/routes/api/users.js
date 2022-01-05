@@ -7,6 +7,14 @@ const { validateSignup } = require('../utils/validators');
 
 const router = express.Router();
 
+router.get(
+  '/', 
+  asyncHandler(async (req, res) => {
+    const users = await User.scope('currentUser').findAll();
+    res.json({ users });
+  }),
+);
+
 router.post(
   '/',
   validateSignup,

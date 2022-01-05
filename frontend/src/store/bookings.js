@@ -76,21 +76,35 @@ export const cancelBooking = (id) => async (dispatch) => {
   if (res.ok) dispatch(removeOneBooking(id));
 };
 
-const initialState = {};
+const initialState = {
+  byId: {},
+  allIds: [],
+};
 
 const bookingsReducer = (state = initialState, action) => {
-  let newState = { ...state };
+  let newState = {};
   switch (action.type) {
     case LOAD_BOOKINGS:
+      newState = { ...state };
       action.bookings.forEach(booking => {
-        newState[booking.id] = booking;
+        newState.byId[booking.id] = booking;
       })
+      newState.allIds = Object.keys(newState.byId);
       return newState;
     case ADD_ONE_BOOKING:
-      newState[action.booking.id] = action.booking;
+      newState = {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.booking.id]: action.booking,
+        },
+      };
+      newState.allIds = Object.keys(newState.byId);
       return newState;
     case REMOVE_ONE_BOOKING:
-      delete newState[action.id];
+      newState = { ...state };
+      delete newState.byId[action.id];
+      newState.allIds = Object.keys(newState.byId);
       return newState;
     default:
       return state;

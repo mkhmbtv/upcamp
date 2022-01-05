@@ -51,27 +51,28 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Spot.associate = function(models) {
-    Spot.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
-    Spot.belongsTo(models.SpotType, { foreignKey: 'spotTypeId', as: 'spotType' });
-    Spot.hasMany(models.Image, { foreignKey: 'spotId', as: 'images' });
-    Spot.hasMany(models.Booking, { foreignKey: 'spotId', as: 'bookings' });
-    Spot.hasMany(models.Review, { foreignKey: 'spotId', as: 'reviews' });
+    Spot.belongsTo(models.User, { foreignKey: 'userId' });
+    Spot.belongsTo(models.SpotType, { foreignKey: 'spotTypeId' });
+    Spot.hasMany(models.Image, { foreignKey: 'spotId' });
+    Spot.hasMany(models.Booking, { foreignKey: 'spotId' });
+    Spot.hasMany(models.Review, { foreignKey: 'spotId' });
     Spot.belongsToMany(models.Amenity, {
       through: 'SpotAmenity',
       otherKey: 'amenityId',
       foreignKey: 'spotId',
       as: 'amenities',
     });
-    Spot.addScope('withImages', { include: ['images'] });
-    Spot.addScope('fullSpot', {
-      include: [
-        { model: models.User.scope('currentUser'), as: 'user' },
-        { model: models.SpotType, as: 'spotType', attributes: ['type'] },
-        { model: models.Image, as: 'images', attributes: ['id', 'url'] },
-        { model: models.Amenity, as: 'amenities', attributes: ['id', 'title', 'essential'], through: { attributes: [] } },
-        { model: models.Review, as: 'reviews', include: [{ model: models.User.scope('currentUser'), as: 'user' }] },
-      ],
-    })
+  };
+  Spot.findWithStuff = async (spotId) => {
+    const { Image, Review, SpotType } = require('./');
+    const spot = await Spot.findByPk(spotId, { include: [SpotType] });
+    const reviews = await Review.findAll({ where: { spotId } });
+    const images = await Image.findAll({ where: { spotId } });
+    const amenities = await spot.getAmenities();
+    spot.dataValues.Images = images.map((image) => image.id);
+    spot.dataValues.Reviews = reviews.map((review) => review.id);
+    spot.dataValues.Amenities = amenities.map((amenity) => amenity.id);
+    return spot;
   };
   return Spot;
 };

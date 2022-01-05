@@ -7,7 +7,7 @@ const SpotReviewFormModal = ({ spotId }) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Leave a review</button>
+      <button className='btn btn--min' onClick={() => setShowModal(true)}>Leave a review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SpotReviewForm spotId={spotId} handleClose={() => setShowModal(false)} />

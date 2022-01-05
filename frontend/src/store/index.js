@@ -6,6 +6,9 @@ import spots from './spots';
 import spotTypes from './spotTypes';
 import bookings from './bookings';
 import reviews from './reviews';
+import images from './images';
+import amenities from './amenities';
+import users from './users';
 
 const rootReducer = combineReducers({
   session,
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   spotTypes,
   bookings,
   reviews,
+  images,
+  amenities,
+  users,
 });
 
 let enhancer;

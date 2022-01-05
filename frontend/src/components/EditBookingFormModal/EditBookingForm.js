@@ -5,8 +5,8 @@ import moment from 'moment';
 import { editBooking } from '../../store/bookings';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const EditBookingForm = ({ booking, handleClose }) => {
-  const guestNums = [...Array(booking.spot.maxCapacity).keys()].map(i => i + 1);
+const EditBookingForm = ({ booking, spot, handleClose }) => {
+  const guestNums = [...Array(spot.maxCapacity).keys()].map(i => i + 1);
   const dispatch = useDispatch();
   
   const parsedStartDate = moment(booking.startDate).toDate();
@@ -37,7 +37,7 @@ const EditBookingForm = ({ booking, handleClose }) => {
   return (
     <form className='bookingForm' onSubmit={handleSubmit}>
       <div className='bookingForm__header'>
-        <span className='bookingForm__price'>${booking.spot.pricePerNight}</span>
+        <span className='bookingForm__price'>${spot.pricePerNight}</span>
         <span className='bookingForm__perNight'>per night ({numGuests} {numGuests === 1 ? 'guest' : 'guests'})</span>
       </div>
       <div className='bookingForm__dates'>

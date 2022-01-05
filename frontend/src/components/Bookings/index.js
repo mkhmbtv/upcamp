@@ -7,15 +7,19 @@ import UserProfile from './UserProfile';
 import './Bookings.css';
 
 const Bookings = () => {
-  const bookings = useSelector((state) => Object.values(state.bookings));
+  const bookings = useSelector((state) => state.bookings.allIds);
+  const upcomingTrips = useSelector((state) => {
+    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].startDate) > new Date());
+  });
+  const pastTrips = useSelector((state) => {
+    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].startDate) < new Date());
+  });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getBookings());
   }, [dispatch]);
-  
-  const upcomingTrips = bookings.filter((booking) => new Date(booking.endDate) > new Date());
-  const pastTrips = bookings.filter((booking) => new Date(booking.endDate) < new Date());
   
   return (
     <section className='dashboard'>
@@ -28,16 +32,16 @@ const Bookings = () => {
         <h2 className='dashboard__heading'>Upcoming Trips</h2>
         <div>
           {upcomingTrips.length > 0 && (
-            upcomingTrips.map((trip) => (
-              <Booking key={trip.id} booking={trip} upcoming={true} />
+            upcomingTrips.map((tripId) => (
+              <Booking key={tripId} bookingId={tripId} upcoming={true} />
             ))
           )}
         </div>
         <h2 className='dashboard__heading'>Past trips</h2>
         <div>
           {pastTrips.length > 0 && (
-            pastTrips.map((trip) => (
-              <Booking key={trip.id} booking={trip} past={true} />
+            pastTrips.map((tripId) => (
+              <Booking key={tripId} bookingId={tripId} />
             ))
           )}
         </div>

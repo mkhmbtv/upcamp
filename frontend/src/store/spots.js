@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const SET_SPOTS = 'spots/setSpots';
-const ADD_ONE_SPOT = 'spots/addOneSpot';
+export const ADD_ONE_SPOT = 'spots/addOneSpot';
 const SET_REVIEW ='spots/setReview';
 const REMOVE_REVIEW = 'spots/removeReview';
 
@@ -12,10 +12,15 @@ const setSpots = (spots) => {
   };
 };
 
-const addOneSpot = (spot) => {
+const addOneSpot = (spot, images, reviews, amenities) => {
   return {
     type: ADD_ONE_SPOT,
-    spot,
+    payload: {
+      spot,
+      images,
+      reviews,
+      amenities,
+    }
   };
 };
 
@@ -45,8 +50,13 @@ export const getSpots = () => async (dispatch) => {
 
 export const getOneSpot = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`);
-  const data = await res.json();
-  dispatch(addOneSpot(data.spot));
+  const { spot, images, reviews, amenities } = await res.json();
+  dispatch(addOneSpot(
+    spot,
+    images, 
+    reviews, 
+    amenities
+  ));
   return res;
 };
 
@@ -85,7 +95,7 @@ const spotsReducer = (state = initialState, action) => {
         ...state,
         byId: {
           ...state.byId,
-          [action.spot.id]: action.spot,
+          [action.payload.spot.id]: action.payload.spot,
         },
       };
       newState.allIds = Object.keys(newState.byId);
@@ -97,7 +107,7 @@ const spotsReducer = (state = initialState, action) => {
           ...state.byId,
           [action.payload.spotId]: {
             ...state.byId[action.payload.spotId],
-            reviews: [...state.byId[action.payload.spotId].reviews, action.payload.review],
+            Reviews: [...state.byId[action.payload.spotId].Reviews, action.payload.review.id],
           },
         },
       };
@@ -110,7 +120,7 @@ const spotsReducer = (state = initialState, action) => {
           ...state.byId,
           [action.payload.spotId]: {
             ...state.byId[action.payload.spotId],
-            reviews: state.byId[action.payload.spotId].reviews.filter((review) => review.id !== action.payload.spotId),
+            Reviews: state.byId[action.payload.spotId].Reviews.filter((review) => review.id !== action.payload.id),
           },
         }
       }
