@@ -8,7 +8,7 @@ const SpotReviewForm = ({ spotId, handleClose }) => {
   const [body, setBody] = useState('');
   const [recommended, setRecommended] = useState(false);
   const [errors, setErrors] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();

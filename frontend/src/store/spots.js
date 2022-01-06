@@ -74,7 +74,9 @@ const spotsReducer = (state = initialState, action) => {
           ...state.byId,
           [action.payload.spotId]: {
             ...state.byId[action.payload.spotId],
-            Reviews: [...state.byId[action.payload.spotId].Reviews, action.payload.review.id],
+            Reviews: Array.from(
+              new Set([...state.byId[action.payload.spotId].Reviews, action.payload.review.id])
+            ),
           },
         },
       };

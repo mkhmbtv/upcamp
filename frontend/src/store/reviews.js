@@ -35,12 +35,27 @@ export const writeReview = ({ spotId, title, body, recommended }) => async (disp
   });
 
   const data = await res.json();
-  dispatch(setReview(data.review, spotId));
+  if (res.ok) dispatch(setReview(data.review, spotId));
+  return res;
+};
+
+export const editReview = ({ id, spotId, title, body, recommended }) => async (dispatch) => {
+  console.log(spotId)
+  const res = await csrfFetch(`/api/reviews/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      title,
+      body,
+      recommended,
+    }),
+  });
+
+  const data = await res.json();
+  if (res.ok) dispatch(setReview(data.review, spotId));
   return res;
 };
 
 export const deleteReview = (spotId, reviewId) => async (dispatch) => {
-  console.log('SPOT ID', spotId, 'REVIEW ID', reviewId);
   const res = await csrfFetch(`/api/reviews/${reviewId}`, { method: 'DELETE' });
   if (res.ok) dispatch(removeReview(spotId, reviewId));
 };

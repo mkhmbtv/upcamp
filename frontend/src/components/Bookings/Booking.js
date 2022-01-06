@@ -3,7 +3,7 @@ import { Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelBooking } from '../../store/bookings';
 import EditBookingFormModal from '../EditBookingFormModal';
-import SpotReviewFormModal from '../SpotReviewFormModal';
+import SpotReviewFormModal from '../SpotReviewForm';
 import { getOneSpot } from '../../store/spots';
 
 const parseDate = (dateString) => {

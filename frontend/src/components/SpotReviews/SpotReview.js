@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../store/reviews";
 import { getSessionUser } from '../../store/session';
+import EditSpotReviewFormModal from '../EditSpotReviewForm';
 
 const SpotReview = ({ reviewId }) => {
   const review = useSelector((state) => state.reviews.byId[reviewId]);
@@ -49,7 +50,7 @@ const SpotReview = ({ reviewId }) => {
         </div>
         {sessionUser.id === author.id && (
           <div className='review__buttons'>
-            <button className='btn bookingForm__btn btn--small'>Edit</button>
+            <EditSpotReviewFormModal review={review} />
             <button 
               className='btn bookingForm__btn btn--small btn--red'
               onClick={handleDelete}
