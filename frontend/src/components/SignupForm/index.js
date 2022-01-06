@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 const SignupForm = ({ onClick }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -26,7 +24,6 @@ const SignupForm = ({ onClick }) => {
     };
 
     return dispatch(sessionActions.signup(user))
-      .then(() => navigate('/'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

@@ -103,19 +103,19 @@
   transition: all .2s;
 }
 
+.loginForm__btn:hover,
+.signupForm__btn:hover,
+.reviewForm__btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgb(0, 0, 0, 0.2);
+}
+
 .loginForm__btn:active,
 .signupForm__btn:active,
 .reviewForm__btn:active {
   transform: translateY(-.1rem);
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
   outline: none;
-}
-
-.loginForm__btn:hover,
-.signupForm__btn:hover,
-.reviewForm__btn:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1rem 2rem rgb(0, 0, 0, 0.2);
 }
 
 .loginForm__btn--demo {

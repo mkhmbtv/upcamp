@@ -48,7 +48,7 @@ const SpotReview = ({ reviewId }) => {
         <div className='review__body'>
           <p>{review.body}</p>
         </div>
-        {sessionUser.id === author.id && (
+        {sessionUser && sessionUser.id === author.id && (
           <div className='review__buttons'>
             <EditSpotReviewFormModal review={review} />
             <button 
