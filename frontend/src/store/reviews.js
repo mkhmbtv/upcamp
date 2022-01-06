@@ -14,6 +14,16 @@ const setReview = (review, spotId) => {
   };
 };
 
+const removeReview = (spotId, reviewId) => {
+  return {
+    type: REMOVE_REVIEW,
+    payload: { 
+      spotId,
+      reviewId,
+    },
+  };
+};
+
 export const writeReview = ({ spotId, title, body, recommended }) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: 'POST',
@@ -27,6 +37,12 @@ export const writeReview = ({ spotId, title, body, recommended }) => async (disp
   const data = await res.json();
   dispatch(setReview(data.review, spotId));
   return res;
+};
+
+export const deleteReview = (spotId, reviewId) => async (dispatch) => {
+  console.log('SPOT ID', spotId, 'REVIEW ID', reviewId);
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, { method: 'DELETE' });
+  if (res.ok) dispatch(removeReview(spotId, reviewId));
 };
 
 const initialState = {
@@ -55,6 +71,11 @@ const reviewsReducer = (state = initialState, action) => {
       };
       newState.allIds = Object.keys(newState.byId);
       return newState;
+    case REMOVE_REVIEW:
+        newState = { ...state };
+        delete newState.byId[action.payload.reviewId];
+        newState.allIds = Object.keys(newState.byId);
+        return newState;
     default:
       return state;
   }

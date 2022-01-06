@@ -87,7 +87,7 @@ const spotsReducer = (state = initialState, action) => {
           ...state.byId,
           [action.payload.spotId]: {
             ...state.byId[action.payload.spotId],
-            Reviews: state.byId[action.payload.spotId].Reviews.filter((review) => review.id !== action.payload.id),
+            Reviews: state.byId[action.payload.spotId].Reviews.filter((id) => id !== action.payload.reviewId),
           },
         }
       }
