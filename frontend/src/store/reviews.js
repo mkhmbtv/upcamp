@@ -1,6 +1,8 @@
+import { csrfFetch } from "./csrf";
 import { ADD_ONE_SPOT } from './spots';
 
-const SET_REVIEW = 'reviews/setReview';
+export const SET_REVIEW = 'reviews/setReview';
+export const REMOVE_REVIEW = 'reviews/removeReview';
 
 const setReview = (review, spotId) => {
   return {
@@ -10,6 +12,21 @@ const setReview = (review, spotId) => {
       spotId,
     },
   };
+};
+
+export const writeReview = ({ spotId, title, body, recommended }) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      body,
+      recommended,
+    }),
+  });
+
+  const data = await res.json();
+  dispatch(setReview(data.review, spotId));
+  return res;
 };
 
 const initialState = {

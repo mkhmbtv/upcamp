@@ -66,7 +66,6 @@ router.get(
 
     const reviews = await Review.findAll({
       where: { spotId },
-      include: ['user'],
     });
 
     res.json({ reviews });

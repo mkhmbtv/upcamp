@@ -1,0 +1,23 @@
+.reviewForm {
+  width: 45rem;
+}
+
+.reviewForm__heading {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 3rem;
+}
+
+.reviewForm__body {
+  display: block;
+  height: inherit;
+}
+
+.reviewForm__checkbox {
+  margin-left: .5rem;
+  margin-bottom: 2rem;
+}
+
+.reviewForm__recommended {
+  font-size: 1.7rem;
+}

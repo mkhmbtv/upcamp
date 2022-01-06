@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { writeReview } from '../../store/spots';
+import { writeReview } from '../../store/reviews';
+import './SpotReviewForm.css';
 
 const SpotReviewForm = ({ spotId, handleClose }) => {
   const [title, setTitle] = useState('');
@@ -30,7 +31,7 @@ const SpotReviewForm = ({ spotId, handleClose }) => {
   return (
     <div className='reviewForm'>
       <div className='reviewForm__container'>
-        <h2>Write a review</h2>
+        <h2 className='reviewForm__heading'>Share your experience</h2>
         <form className='reviewForm__form' onSubmit={handleSubmit}>
           <ul className='reviewForm__errors'>
             {errors.map((err, i) => (
@@ -49,17 +50,18 @@ const SpotReviewForm = ({ spotId, handleClose }) => {
             value={body}
             onChange={(e) => setBody(e.target.value)}
             placeholder='Talk about your experience'
+            rows={10}
           />
-          <label>
+          <label className='reviewForm__recommended'>
             Would you recommend this campspot?
             <input
-              className='reviewForm__recommended'
+              className='reviewForm__checkbox'
               type='checkbox'
               defaultChecked={recommended}
               onChange={() => setRecommended(!recommended)}
             />
           </label>
-          <button>Submit review</button>
+          <button className='btn reviewForm__btn'>Submit review</button>
         </form>
       </div>
     </div>

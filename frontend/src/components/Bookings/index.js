@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { getBookings } from '../../store/bookings';
 import Booking from './Booking';
 import UserProfile from './UserProfile';
 import './Bookings.css';
 
 const Bookings = () => {
+  const sessionUser = useSelector((state) => state.session.user);
   const bookings = useSelector((state) => state.bookings.allIds);
   const upcomingTrips = useSelector((state) => {
     return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].startDate) > new Date());
@@ -20,6 +21,8 @@ const Bookings = () => {
   useEffect(() => {
     dispatch(getBookings());
   }, [dispatch]);
+
+  if (!sessionUser) return <Navigate to='/' />
   
   return (
     <section className='dashboard'>

@@ -6,7 +6,8 @@
 }
 
 .loginForm__container, 
-.signupForm__container {
+.signupForm__container,
+.reviewForm__container {
   padding: 1.5rem;
 }
 
@@ -49,18 +50,22 @@
 }
 
 .loginForm__error, 
-.signupForm__error {
+.signupForm__error,
+.reviewForm__error {
   color: #e03131;
 }
 
 .loginForm__errors, 
-.signupForm__errors {
+.signupForm__errors,
+.reviewForm__errors {
   margin-bottom: .5rem;
   list-style: none;
 }
 
 .loginForm__input, 
-.signupForm__input {
+.signupForm__input,
+.reviewForm__title,
+.reviewForm__body {
   width: 100%;
   height: 6.7rem;
   font-size: 1.6rem;
@@ -72,7 +77,9 @@
 }
 
 .loginForm__input::placeholder,
-.signupForm__input::placeholder {
+.signupForm__input::placeholder,
+.reviewForm__title::placeholder,
+.reviewForm__body::placeholder {
   color: var(--color-black);
 }
 
@@ -85,20 +92,30 @@
 }
 
 .loginForm__btn,
-.signupForm__btn {
+.signupForm__btn,
+.reviewForm__btn {
   font-size: 1.6rem;
   width: 100%;
   padding: 1.5rem;
   background-color: var(--color-secondary-light);
   border-radius: 3px;
   margin-top: 1.1rem;
+  transition: all .2s;
 }
 
 .loginForm__btn:active,
-.signupForm__btn:active {
+.signupForm__btn:active,
+.reviewForm__btn:active {
   transform: translateY(-.1rem);
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
   outline: none;
+}
+
+.loginForm__btn:hover,
+.signupForm__btn:hover,
+.reviewForm__btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgb(0, 0, 0, 0.2);
 }
 
 .loginForm__btn--demo {

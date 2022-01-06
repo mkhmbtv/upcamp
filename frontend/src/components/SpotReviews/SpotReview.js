@@ -1,11 +1,20 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const SpotReview = ({ reviewId }) => {
   const review = useSelector((state) => state.reviews.byId[reviewId]);
   const user = useSelector((state) => state.users.byId[review.userId]);
   const date = new Date(review.createdAt.split(' ')[0]).toLocaleString('en-us', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoaded(true);
+    }
+  }, [user]);
   
-  if (!user) return null;
+  if (!isLoaded) return null;
 
   return (
     <div className='review'>
