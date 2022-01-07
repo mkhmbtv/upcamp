@@ -1,6 +1,6 @@
 .footer {
-  background-color: var(--color-grey-dark-2);
-  height: 5rem;
+  background-color: var(--color-black);
+  height: 6.6rem;
   color: var(--color-white);
   display: flex;
   justify-content: center;

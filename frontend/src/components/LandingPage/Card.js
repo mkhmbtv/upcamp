@@ -27,7 +27,7 @@ const Card = ({ id }) => {
   }
 
   return (
-    <div className='card'>
+    <div className={spotType.type === 'Tent camping' || spotType.type === 'RV park' ? 'card card--wide' : 'card'}>
       <Link className='card__link' to={`/spots/types/${id}`}>
           <img className='card__image' src={imageUrl} alt='camping-type' />
           <h3 className='card__text'>{spotType.type} sites</h3>
