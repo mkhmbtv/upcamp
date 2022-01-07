@@ -7,7 +7,7 @@ const EditBookingFormModal = ({ booking, spot }) => {
   
   return (
     <>
-      <button className='btn bookingForm__btn btn--small' onClick={() => setShowModal(true)}>Edit</button>
+      <button className='btn btn--secondary btn--small' onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditBookingForm booking={booking} spot={spot} handleClose={() => setShowModal(false)}/>

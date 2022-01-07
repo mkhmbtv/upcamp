@@ -88,7 +88,7 @@ const EditBookingForm = ({ booking, spot, handleClose }) => {
         ))}
       </ul>
       <div className='bookingForm__btnContainer'>
-        <button className='btn bookingForm__btn' type='submit'>Edit Booking</button>
+        <button className='btn btn--secondary' type='submit'>Edit Booking</button>
       </div>
     </form>
   );

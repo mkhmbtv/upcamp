@@ -60,7 +60,7 @@ const EditSpotReviewForm = ({ review, handleClose }) => {
               onChange={() => setRecommended(!recommended)}
             />
           </label>
-          <button className='btn reviewForm__btn'>Submit review</button>
+          <button className='btn btn--primary'>Submit review</button>
         </form>
       </div>
     </div>

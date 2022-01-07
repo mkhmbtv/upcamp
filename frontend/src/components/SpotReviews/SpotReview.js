@@ -52,7 +52,7 @@ const SpotReview = ({ reviewId }) => {
           <div className='review__buttons'>
             <EditSpotReviewFormModal review={review} />
             <button 
-              className='btn bookingForm__btn btn--small btn--red'
+              className='btn btn--secondary btn--small btn--red'
               onClick={handleDelete}
             >
               Delete

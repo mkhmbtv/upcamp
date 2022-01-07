@@ -60,7 +60,7 @@ const Booking = ({ bookingId, upcoming, past }) => {
             <div>
               <EditBookingFormModal booking={booking} spot={spot} />
               <button 
-                className='btn bookingForm__btn btn--small btn--red'
+                className='btn btn--secondary btn--small btn--red'
                 onClick={() => dispatch(cancelBooking(booking.id))}
               >
                 Cancel

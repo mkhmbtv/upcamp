@@ -91,9 +91,7 @@
   font-size: 1.37rem;
 }
 
-.loginForm__btn,
-.signupForm__btn,
-.reviewForm__btn {
+.btn--primary {
   font-size: 1.6rem;
   width: 100%;
   padding: 1.5rem;
@@ -103,16 +101,12 @@
   transition: all .2s;
 }
 
-.loginForm__btn:hover,
-.signupForm__btn:hover,
-.reviewForm__btn:hover {
+.btn--primary:hover {
   transform: translateY(-0.3rem);
   box-shadow: 0 1rem 2rem rgb(0, 0, 0, 0.2);
 }
 
-.loginForm__btn:active,
-.signupForm__btn:active,
-.reviewForm__btn:active {
+.btn--primary:active {
   transform: translateY(-.1rem);
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
   outline: none;

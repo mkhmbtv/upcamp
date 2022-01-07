@@ -86,7 +86,7 @@ const SignupForm = ({ onClick }) => {
             placeholder='Password'
             required
           />
-          <button className='btn signupForm__btn' type='submit'>Join Upcamp</button>
+          <button className='btn btn--primary' type='submit'>Join Upcamp</button>
         </form>
       </div>
       <div className='signupForm__footer'>

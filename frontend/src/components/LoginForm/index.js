@@ -28,7 +28,7 @@ const LoginForm = ({ onClick }) => {
           <small className='loginForm__header--sub'>Let's get you outside</small>
         </h2>
         <button 
-          className='btn loginForm__btn loginForm__btn--demo' 
+          className='btn btn--primary loginForm__btn--demo'
           onClick={() => dispatch(sessionActions.demoLogin())}
         >
           Demo User
@@ -58,7 +58,7 @@ const LoginForm = ({ onClick }) => {
             placeholder='Password'
             required
           />
-          <button className='btn loginForm__btn' type='submit'>Log In</button>
+          <button className='btn btn--primary' type='submit'>Log In</button>
         </form>
       </div>
       <div className='loginForm__footer'>

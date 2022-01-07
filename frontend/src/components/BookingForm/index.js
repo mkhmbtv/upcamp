@@ -89,7 +89,7 @@ const BookingForm = ({ spotId, price, maxGuests }) => {
         ))}
       </ul>
       <div className='bookingForm__btnContainer'>
-        <button className='btn bookingForm__btn' type='submit'>Instant Book</button>
+        <button className='btn btn--secondary' type='submit'>Instant Book</button>
       </div>
     </form>
   );
