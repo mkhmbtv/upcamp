@@ -34,20 +34,6 @@ router.get('/:id(\\d+)',
   }),
 );
 
-router.post(
-  '/',
-  asyncHandler(async (req, res) => {
-    const spotObj = { ...req.body };
-    delete spotObj.amenities;
-    const spot = await Spot.create(spotObj, { include: ['images'] });
-    req.body.amenities.forEach(async (amenityId) => {
-      const amenity = await Amenity.findByPk(amenityId);
-      await spot.addAmenity(amenity);
-    });
-    res.json({ spot });
-  }),
-);
-
 router.get(
   '/:id(\\d+)/images',
   asyncHandler (async (req, res) => {

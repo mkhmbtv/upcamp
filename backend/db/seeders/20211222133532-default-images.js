@@ -81,6 +81,42 @@ module.exports = {
         spotId: spots[5].id,
         url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640172611/upcamp_assets/seeder_images/treehouse-cabin-retreat-treehouse-cabin-retreat_bydjuv.jpg',
       },
+      {
+       spotId: spots[6].id,
+       url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641563806/upcamp_assets/our-desert-homestead-our-desert-homestead-rv-site_xhg4bd.jpg',
+      },
+      {
+        spotId: spots[6].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641563868/upcamp_assets/our-desert-homestead-our-desert-homestead-rv-site_sdtyt6.jpg'
+      },
+      {
+        spotId: spots[6].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641563974/upcamp_assets/our-desert-homestead-our-desert-homestead-rv-site_l68abb.jpg'
+      },
+      {
+        spotId: spots[7].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641561064/upcamp_assets/yurt-life-llc-marble-mountain-yurt_zobmiw.jpg',
+      },
+      {
+        spotId: spots[7].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641561106/upcamp_assets/yurt-life-llc-marble-mountain-yurt_pzthl3.jpg',
+      },
+      {
+        spotId: spots[7].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641561151/upcamp_assets/yurt-life-llc-marble-mountain-yurt_mbbku4.jpg',
+      },
+      {
+        spotId: spots[8].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641575312/upcamp_assets/windsor-family-farm-flying-pig-b-n-b-california-coast_uy2sf3.jpg',
+      },
+      {
+        spotId: spots[8].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641575453/upcamp_assets/windsor-family-farm-flying-pig-b-n-b-california-coast_uwq1jw.jpg',
+      },
+      {
+        spotId: spots[8].id,
+        url: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641575351/upcamp_assets/windsor-family-farm-flying-pig-b-n-b-california-coast_i2nxwb.jpg',
+      },
     ], {});
   },
 
