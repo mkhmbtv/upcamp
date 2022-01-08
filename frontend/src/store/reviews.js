@@ -40,7 +40,6 @@ export const writeReview = ({ spotId, title, body, recommended }) => async (disp
 };
 
 export const editReview = ({ id, spotId, title, body, recommended }) => async (dispatch) => {
-  console.log(spotId)
   const res = await csrfFetch(`/api/reviews/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
