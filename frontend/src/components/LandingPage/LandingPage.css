@@ -108,9 +108,8 @@ header {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
-.promo__image:hover .promo__box {
+.promo__image:hover + .promo__box {
   transform: translateY(-.7rem);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .card__text {
@@ -158,6 +157,7 @@ header {
   position: absolute;
   left: 5rem;
   top: 5rem;
+  transition: all .2s;
 }
 
 .promo__heading {
