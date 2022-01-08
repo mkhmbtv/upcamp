@@ -10,10 +10,10 @@ const Bookings = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const bookings = useSelector((state) => state.bookings.allIds);
   const upcomingTrips = useSelector((state) => {
-    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].startDate) > new Date());
+    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].endDate) >= new Date());
   });
   const pastTrips = useSelector((state) => {
-    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].startDate) < new Date());
+    return state.bookings.allIds.filter((bookingId) => new Date(state.bookings.byId[bookingId].endDate) < new Date());
   });
 
   const dispatch = useDispatch();
