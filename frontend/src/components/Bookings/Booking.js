@@ -10,7 +10,7 @@ const parseDate = (dateString) => {
   return new Date(dateString).toLocaleString('en-us', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-const Booking = ({ bookingId, upcoming, past }) => {
+const Booking = ({ bookingId, upcoming }) => {
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.bookings.byId[bookingId]);
   const spot = useSelector((state) => state.spots.byId[booking.spotId]);
@@ -20,11 +20,17 @@ const Booking = ({ bookingId, upcoming, past }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getOneSpot(booking.spotId));
-  }, [dispatch, booking]);
+    if (spot) {
+      if (spot.Images === undefined ) {
+        dispatch(getOneSpot(booking.spotId));
+      }
+    } else {
+      dispatch(getOneSpot(booking.spotId))
+    }
+  }, [dispatch, booking, spot]);
 
   useEffect(() => {
-    if (booking && spot && images) {
+    if (spot) {
       if (spot.Images) {
         setImageUrl(images[spot.Images[0]].url);
         setIsLoaded(true);

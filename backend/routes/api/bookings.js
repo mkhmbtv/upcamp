@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Booking, Spot } = require('../../db/models');
+const { Booking } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { validateBooking } = require('../utils/validators');
 const { resourceNotFoundError } = require('../utils/errors');

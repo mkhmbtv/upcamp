@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { getSpots } from '../../store/spots';
@@ -11,35 +11,27 @@ const Spots = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => {
     return typeId
-      ? Object.values(state.spots.byId).filter(spot => spot.spotTypeId === Number(typeId))
-      : Object.values(state.spots.byId); 
+      ? state.spots.allIds.filter((id) => state.spots.byId[id].spotTypeId === Number(typeId))
+      : state.spots.allIds;
   });
   const type = useSelector((state) => state.spotTypes.byId[typeId]);
-
-  const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
     dispatch(getSpots());
   }, [dispatch]);
 
   useEffect(() => {
-    if (typeId) {
+    if (typeId && !type) {
       dispatch(getSpotTypes());
     }
-  }, [dispatch, typeId]);
-
-  useEffect(() => {
-    if (spots) setIsLoaded(true);
-  }, [spots]);
-
-  if (!isLoaded) return null;
+  }, [dispatch, typeId, type]);
   
   return (
     <section className='spots'>
       <h2 className='spots__heading'>{type? `${type.type} sites` : 'All campsites'}</h2>
       <div className='spots__list'>
-        {spots.map((spot) => (
-          <Spot key={spot.id} spot={spot} />
+        {spots.map((spotId) => (
+          <Spot key={spotId} spotId={spotId} />
         ))}
       </div>
     </section>

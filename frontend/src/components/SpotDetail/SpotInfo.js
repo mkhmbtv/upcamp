@@ -8,8 +8,8 @@ const SpotInfo = ({ campspot }) => {
   const user = useSelector((state) => state.users.byId[campspot.userId]);
   
   useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+    if (!user) dispatch(getUsers());
+  }, [dispatch, user]);
 
   if (!user) return null;
   
