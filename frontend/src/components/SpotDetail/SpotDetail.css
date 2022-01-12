@@ -104,3 +104,36 @@
   font-size: 2rem;
 }
 
+.campspot__map {
+  position: relative;
+}
+
+.campspot__basicBox {
+  width: 35rem;
+  font-size: 1.3rem;
+  border: 1px solid var(--color-grey-light-1);
+  position: absolute;
+  top: 5rem;
+  left: 13.5rem;
+  z-index: 2;
+}
+
+.campspot__boxGrey {
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  background-color: var(--color-grey-light-2);
+}
+
+.campspot__boxWhite {
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  background-color: var(--color-white);
+}
+
+.campspot__basic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.campspot__basic span:first-child {
+  font-weight: 500;
+}

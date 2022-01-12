@@ -9,6 +9,7 @@ import reviews from './reviews';
 import images from './images';
 import amenities from './amenities';
 import users from './users';
+import maps from './maps';
 
 const rootReducer = combineReducers({
   session,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   images,
   amenities,
   users,
+  maps,
 });
 
 let enhancer;
