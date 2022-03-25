@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Review } = require('../../db/models');
+const { Review, User } = require('../../db/models');
 const { validateReview } = require('../utils/validators');
 const { resourceNotFoundError } = require('../utils/errors');
 const { requireAuth } = require('../../utils/auth');
@@ -14,7 +14,7 @@ router.put(
   validateReview,
   asyncHandler(async (req, res, next) => {
     const reviewId = parseInt(req.params.id, 10);
-    const review = await Review.findByPk(reviewId);
+    const review = await Review.findByPk(reviewId, { include: User });
     if (!review) return next(resourceNotFoundError('Review', reviewId));
 
     const { title, body, recommended } = req.body;

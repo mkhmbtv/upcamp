@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Spot, Amenity, Review, Image } = require('../../db/models');
+const { Spot, Review, Image, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { validateReview } = require('../utils/validators');
 const { resourceNotFoundError } = require('../utils/errors');
@@ -24,13 +24,8 @@ router.get('/:id(\\d+)',
     if (!spot) {
       return next(resourceNotFoundError('Spot', spotId));
     }
-    const images = await Image.findAll({ where: { spotId } });
-    const reviews = await Review.findAll({ where: { spotId } });
-    const amenities = await spot.getAmenities();
-    spot.dataValues.Images = images.map((image) => image.id);
-    spot.dataValues.Reviews = reviews.map((review) => review.id);
-    spot.dataValues.Amenities = amenities.map((amenity) => amenity.id);
-    res.json({ spot, images, reviews, amenities });
+
+    res.json({ spot });
   }),
 );
 
@@ -52,6 +47,7 @@ router.get(
 
     const reviews = await Review.findAll({
       where: { spotId },
+      include: User,
     });
 
     res.json({ reviews });
@@ -75,8 +71,8 @@ router.post(
       body,
       recommended,
     });
-
-    res.json({ review });
+    const createdReview = await Review.findByPk(review.id, { include: User });
+    res.json({ createdReview });
   }),
 );
 

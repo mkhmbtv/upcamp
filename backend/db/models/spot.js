@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
   Spot.findWithStuff = async (spotId) => {
-    const { Image, Review, SpotType } = require('./');
-    const spot = await Spot.findByPk(spotId, { include: [SpotType] });
+    const { Image, Review, SpotType, User } = require('./');
+    const spot = await Spot.findByPk(spotId, { include: [User, SpotType] });
     const reviews = await Review.findAll({ where: { spotId } });
     const images = await Image.findAll({ where: { spotId } });
     const amenities = await spot.getAmenities();
