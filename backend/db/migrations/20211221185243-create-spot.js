@@ -54,6 +54,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      thumbnailImageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       pricePerNight: {
         type: Sequelize.INTEGER,
         allowNull: false,

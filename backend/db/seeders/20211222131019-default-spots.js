@@ -24,6 +24,7 @@ module.exports = {
         longitude: -71.39764097357144,
         pricePerNight: 100,
         maxCapacity: 24,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640171477/upcamp_assets/seeder_images/sacred-nectar-sanctuary-sacred-nectar-sanctuary-new-england_ooqacw.jpg',
       },
       {
         name: 'Starlight Hills Campground',
@@ -43,6 +44,7 @@ module.exports = {
         longitude: -81.75745356931608,
         pricePerNight: 60,
         maxCapacity: 10,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640171698/upcamp_assets/seeder_images/starlight-hills-starlight-hills-campground_dsp8fx.jpg',
       },
       {
         name: 'Twisselman’s Glamping by the Pond',
@@ -60,6 +62,7 @@ module.exports = {
         longitude: -120.1077065618283,
         pricePerNight: 210,
         maxCapacity: 5,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640171860/upcamp_assets/seeder_images/mkvcduhhwhz9lvctpnip_l5s4h6.jpg',
       },
       {
         name: 'Four Directions Retreat Tiny Cabin',
@@ -77,6 +80,7 @@ module.exports = {
         longitude: -122.94639108465805,
         pricePerNight: 109,
         maxCapacity: 6,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640172105/upcamp_assets/seeder_images/p5lkkkyrvc0xom3cxmju_dtomx0.jpg',
       },
       {
         name: 'Homosassa Springs RV SITE with dock',
@@ -93,6 +97,7 @@ module.exports = {
         longitude: -82.60033019193774,
         pricePerNight: 75,
         maxCapacity: 5,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640172414/upcamp_assets/seeder_images/homosassa-springs-rv-site-homosassa-springs-rv-site-with-dock_gwnbel.jpg',
       },
       {
         name: 'Treehouse Cabin Retreat',
@@ -110,6 +115,7 @@ module.exports = {
         longitude: -83.00148963068392,
         pricePerNight: 255,
         maxCapacity: 7,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1640172539/upcamp_assets/seeder_images/treehouse-cabin-retreat-treehouse-cabin-retreat_s2ynia.png',
       },
       {
         name: 'Our Desert Homestead - RV Site',
@@ -126,6 +132,7 @@ module.exports = {
         longitude: -106.7723652004487,
         pricePerNight: 30,
         maxCapacity: 5,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641563806/upcamp_assets/our-desert-homestead-our-desert-homestead-rv-site_xhg4bd.jpg',
       },
       {
         name: 'Marble Mountain Yurt',
@@ -141,6 +148,7 @@ module.exports = {
         longitude: -107.1925337999704,
         pricePerNight: 200,
         maxCapacity: 6,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641561064/upcamp_assets/yurt-life-llc-marble-mountain-yurt_zobmiw.jpg',
       },
       {
         name: "Flying Pig B'n'B",
@@ -155,6 +163,7 @@ module.exports = {
         longitude: -121.57066427726433,
         pricePerNight: 180,
         maxCapacity: 5,
+        thumbnailImageUrl: 'https://res.cloudinary.com/djogxk6nz/image/upload/v1641575312/upcamp_assets/windsor-family-farm-flying-pig-b-n-b-california-coast_uy2sf3.jpg',
       },
     ], {});
   },
