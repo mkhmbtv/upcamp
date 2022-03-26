@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Spots from './components/Spots';
 import SpotDetail from './components/SpotDetail';
 import Bookings from './components/Bookings';
+import SpotsByType from './components/SpotsByType';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/spots' element={<Spots />} />
-          <Route path='/spots/types/:typeId' element={<Spots />} />
+          <Route path='/s/:type' element={<SpotsByType />} />
           <Route path='/spots/:id' element={<SpotDetail />} />
           <Route path='/:userId/bookings' element={<Bookings />} />
         </Routes>

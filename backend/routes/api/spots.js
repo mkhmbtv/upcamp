@@ -11,7 +11,12 @@ const router = express.Router();
 router.get(
   '/', 
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll();
+    const spots = await Spot.findAll({
+      include: {
+        model: SpotType,
+        attributes: ['type'],
+      }
+    });
     res.json({ spots });
   }),
 );
@@ -44,6 +49,7 @@ router.get(
     const spots = await Spot.findAll({
       include: {
         model: SpotType,
+        attributes: ['type'],
         where: {
           type: req.params.spotType,
         },

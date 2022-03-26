@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ id }) => {
   const spotType = useSelector((state) => state.spotTypes.byId[id])
+  const type = spotType.type.replace(/\s/g, '-');
 
   let imageUrl;
   switch (spotType.type) {
@@ -28,7 +29,7 @@ const Card = ({ id }) => {
 
   return (
     <div className={spotType.type === 'Tent camping' || spotType.type === 'RV park' ? 'card card--wide' : 'card'}>
-      <Link className='card__link' to={`/spots/types/${id}`}>
+      <Link className='card__link' to={`/s/${type}`}>
           <img className='card__image' src={imageUrl} alt='camping-type' />
           <h3 className='card__text'>{spotType.type} sites</h3>
       </Link>

@@ -12,7 +12,8 @@ const LandingPage = () => {
   const spotTypeIds = useSelector((state) => state.spotTypes.allIds);
 
   useEffect(() => {
-    if (spotTypeIds.length === 0) dispatch(getSpotTypes());
+    if (spotTypeIds.length > 0) return;
+    dispatch(getSpotTypes());
   }, [dispatch, spotTypeIds]);
 
   return (
