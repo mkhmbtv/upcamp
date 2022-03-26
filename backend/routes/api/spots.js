@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Spot, Review, Image, User } = require('../../db/models');
+const { Spot, SpotType, Review, Image, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { validateReview } = require('../utils/validators');
 const { resourceNotFoundError } = require('../utils/errors');
@@ -39,6 +39,21 @@ router.get(
 );
 
 router.get(
+  '/:spotType',
+  asyncHandler (async (req, res) => {
+    const spots = await Spot.findAll({
+      include: {
+        model: SpotType,
+        where: {
+          type: req.params.spotType,
+        },
+      }
+    });
+    res.json({ spots });
+  })
+)
+
+router.get(
   '/:id(\\d+)/reviews', 
   asyncHandler(async (req, res, next) => {
     const spotId = parseInt(req.params.id, 10);
@@ -73,6 +88,19 @@ router.post(
     });
     const createdReview = await Review.findByPk(review.id, { include: User });
     res.json({ createdReview });
+  }),
+);
+
+
+router.get(
+  '/:id(\\d+)/amenities',
+  asyncHandler(async (req, res, next) => {
+    const spotId = parseInt(req.params.id, 10);
+    const spot = await Spot.findByPk(spotId);
+    if (!spot) return next(resourceNotFoundError('Spot', spotId));
+
+    const amenities = await spot.getAmenities();
+    res.json({ amenities });
   }),
 );
 

@@ -1,12 +1,11 @@
 import { csrfFetch } from './csrf';
-import { ADD_ONE_SPOT } from './spots';
 
 const SET_SPOT_IMAGES = 'images/setSpotImages';
 
 const setSpotImages = (images) => {
   return {
     type: SET_SPOT_IMAGES,
-    payload: { images },
+    images,
   }
 }
 
@@ -25,13 +24,11 @@ const initialState = {
 const imagesReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
-    case ADD_ONE_SPOT:
     case SET_SPOT_IMAGES:
-      const images = {};
-      action.payload.images.forEach((image) => {
-        images[image.id] = image;
+      newState = { ...state };
+      action.images.forEach((image) => {
+        newState.byId[image.id] = image;
       });
-      newState = { ...state, byId: { ...state.byId, ...images } };
       newState.allIds = Object.keys(newState.byId);
       return newState;
     default:
