@@ -14,38 +14,24 @@ const Booking = ({ bookingId, upcoming }) => {
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.bookings.byId[bookingId]);
   const spot = useSelector((state) => state.spots.byId[booking.spotId]);
-  const images = useSelector((state) => state.images.byId);
-  
-  const [imageUrl, setImageUrl] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (spot) {
-      if (spot.Images === undefined ) {
-        dispatch(getOneSpot(booking.spotId));
-      }
-    } else {
-      dispatch(getOneSpot(booking.spotId))
+      setIsLoaded(true);
+      return;
     }
-  }, [dispatch, booking, spot]);
-
-  useEffect(() => {
-    if (spot) {
-      if (spot.Images) {
-        setImageUrl(images[spot.Images[0]].url);
-        setIsLoaded(true);
-      }
-    }
-  }, [booking, spot, images]);
+    dispatch(getOneSpot(booking.spotId));
+  }, [dispatch, spot, booking.spotId]);
 
   const startDate = parseDate(booking.startDate);
   const endDate = parseDate(booking.endDate);
 
   if (!isLoaded) return null;
-  
+
   return (
     <div className='booking'>
-      <img className='booking__img' src={imageUrl} alt='campspot view' />
+      <img className='booking__img' src={spot.thumbnailImageUrl} alt='campspot view' />
       <div className='booking__info'>
         <Link className='booking__spotLink' to={`/spots/${booking.spotId}`}><h3 className='booking__spotName'>{spot.name}</h3></Link>
         <p className='booking__location'>
