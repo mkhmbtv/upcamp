@@ -1,21 +1,4 @@
-import { csrfFetch } from './csrf';
-const SET_AMENITIES = 'amenities/setAmenities';
-
-const setAmenities = (amenities) => {
-  return {
-    type: SET_AMENITIES,
-    amenities,
-  }
-};
-
-
-export const getSpotAmenities = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${spotId}/amenities`);
-  const data = await res.json();
-  dispatch(setAmenities(data.amenities));
-  return res;
-}
-
+import { ADD_ONE_SPOT } from './spots';
 
 const initialState = {
   byId: {},
@@ -25,11 +8,12 @@ const initialState = {
 const amenitiesReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
-    case SET_AMENITIES:
-      newState = { ...state };
-      action.amenities.forEach((amenity) => {
-        newState.byId[amenity.id] = amenity;
+    case ADD_ONE_SPOT:
+      const amenities = {}
+      action.payload.amenities.forEach((amenity) => {
+        amenities[amenity.id] = amenity;
       });
+      newState = { ...state, byId: { ...state.byId, ...amenities }};
       newState.allIds = Object.keys(newState.byId);
       return newState
     default:

@@ -8,7 +8,6 @@ import bookings from './bookings';
 import reviews from './reviews';
 import images from './images';
 import amenities from './amenities';
-import users from './users';
 import maps from './maps';
 
 const rootReducer = combineReducers({
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   reviews,
   images,
   amenities,
-  users,
   maps,
 });
 

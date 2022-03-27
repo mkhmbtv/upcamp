@@ -29,17 +29,11 @@ router.get('/:id(\\d+)',
     if (!spot) {
       return next(resourceNotFoundError('Spot', spotId));
     }
+    const images = await Image.findAll({ where: { spotId } });
+    const reviews = await Review.findAll({ where: { spotId }, include: User });
+    const amenities = await spot.getAmenities();
 
-    res.json({ spot });
-  }),
-);
-
-router.get(
-  '/:id(\\d+)/images',
-  asyncHandler (async (req, res) => {
-    const spotId = parseInt(req.params.id, 10);
-    const images = await Image.findAll({ where: { spotId }});
-    res.json({ images });
+    res.json({ spot, images, reviews, amenities });
   }),
 );
 
@@ -56,22 +50,6 @@ router.get(
       }
     });
     res.json({ spots });
-  })
-)
-
-router.get(
-  '/:id(\\d+)/reviews', 
-  asyncHandler(async (req, res, next) => {
-    const spotId = parseInt(req.params.id, 10);
-    const spot = await Spot.findByPk(spotId);
-    if (!spot) return next(resourceNotFoundError('Spot', spotId));
-
-    const reviews = await Review.findAll({
-      where: { spotId },
-      include: User,
-    });
-
-    res.json({ reviews });
   }),
 );
 

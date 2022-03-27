@@ -1,31 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUsers } from '../../store/users';
 
-const SpotInfo = ({ campspot }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.users.byId[campspot.userId]);
-  
-  useEffect(() => {
-    if (!user) dispatch(getUsers());
-  }, [dispatch, user]);
-
-  if (!user) return null;
-  
+const SpotInfo = ({ spot }) => {
   return (
     <div className='campspot__info'>
-      <Link className='campsite__locationLink' to='/spots'>{campspot.state}, {campspot.country}</Link>
-      <h1 className='campspot__name'>{campspot.name}</h1>
+      <Link className='campsite__locationLink' to='/spots'>{spot.state}, {spot.country}</Link>
+      <h1 className='campspot__name'>{spot.name}</h1>
       <div className='campspot__hostAndDescription'>
         <div className='campspot__host'>
           <img className='campspot__userpic' src="https://img.icons8.com/color/96/000000/test-account.png" alt='user pic' />
           <div className='campspot__hostName'>
             <span>Hosted By</span>
-            <span>{user.firstName} {user.lastName}</span>
+            <span>{spot.User.firstName} {spot.User.lastName}</span>
           </div>
         </div>
-        <div className='campspot__description'>{campspot.description}</div>
+        <div className='campspot__description'>{spot.description}</div>
       </div>
     </div>
   );

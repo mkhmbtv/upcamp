@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../store/reviews";
 import { getSessionUser } from '../../store/session';
@@ -6,26 +5,15 @@ import EditSpotReviewFormModal from '../EditSpotReviewForm';
 
 const SpotReview = ({ reviewId }) => {
   const review = useSelector((state) => state.reviews.byId[reviewId]);
-  const author = useSelector((state) => state.users.byId[review.userId]);
   const sessionUser = useSelector(getSessionUser);
   const dispatch = useDispatch();
   
   const date = new Date(review.createdAt.split(' ')[0]).toLocaleString('en-us', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (author) {
-      setIsLoaded(true);
-    }
-  }, [author]);
-
   const handleDelete = () => {
     return dispatch(deleteReview(review.spotId, review.id));
   };
   
-  if (!isLoaded) return null;
-
   return (
     <div className='review'>
       <img className='review__reviewerAvatar' src="https://img.icons8.com/color/96/000000/test-account.png" alt='author pic' />
@@ -36,7 +24,7 @@ const SpotReview = ({ reviewId }) => {
             <div className='review__opinion'>
               {review.recommended ? <i className="las la-thumbs-up"></i> : <i className="las la-thumbs-down"></i>}
               <div>
-                <span className='review__authorName'>{author.firstName} {author.lastName.charAt(0)}.</span>
+                <span className='review__authorName'>{review.User.firstName} {review.User.lastName.charAt(0)}.</span>
                 {review.recommended ? 'recommends this listing.' : "doesn't recommend this listing."}
               </div>
             </div>
@@ -48,7 +36,7 @@ const SpotReview = ({ reviewId }) => {
         <div className='review__body'>
           <p>{review.body}</p>
         </div>
-        {sessionUser && sessionUser.id === author.id && (
+        {sessionUser && sessionUser.id === review.User.id && (
           <div className='review__buttons'>
             <EditSpotReviewFormModal review={review} />
             <button 

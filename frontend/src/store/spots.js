@@ -11,10 +11,15 @@ const setSpots = (spots) => {
   };
 };
 
-const addOneSpot = (spot) => {
+const addOneSpot = (spot, images, reviews, amenities) => {
   return {
     type: ADD_ONE_SPOT,
-    spot,
+    payload: {
+      spot,
+      images,
+      reviews,
+      amenities,
+    }
   };
 };
 
@@ -27,8 +32,13 @@ export const getSpots = () => async (dispatch) => {
 
 export const getOneSpot = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`);
-  const data = await res.json();
-  dispatch(addOneSpot(data.spot));
+  const { spot, images, reviews, amenities } = await res.json();
+  dispatch(addOneSpot(
+    spot,
+    images,
+    reviews,
+    amenities
+  ));
   return res;
 };
 
@@ -59,7 +69,7 @@ const spotsReducer = (state = initialState, action) => {
         ...state,
         byId: {
           ...state.byId,
-          [action.spot.id]: action.spot,
+          [action.payload.spot.id]: action.payload.spot,
         },
       };
       newState.allIds = Object.keys(newState.byId);
