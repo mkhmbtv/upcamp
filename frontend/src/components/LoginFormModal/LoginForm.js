@@ -1,22 +1,37 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useAuth } from '../../context/AuthModal';
 import * as sessionActions from '../../store/session';
 import './LoginForm.css';
 
-const LoginForm = ({ onClick }) => {
+const LoginForm = () => {
+  const { setShowLoginForm, setShowSignupForm } = useAuth();
+
   const dispatch = useDispatch();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+  const showSignup = () => {
+    setShowLoginForm(false);
+    setShowSignupForm(true)
+  };
+
+  const demoLogin = () => {
+    dispatch(sessionActions.demoLogin());
+    setShowLoginForm(false);
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
+      .then(() => setShowLoginForm(false))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
+    
   };
 
   return (
@@ -29,7 +44,7 @@ const LoginForm = ({ onClick }) => {
         </h2>
         <button 
           className='btn btn--primary loginForm__btn--demo'
-          onClick={() => dispatch(sessionActions.demoLogin())}
+          onClick={demoLogin}
         >
           Demo User
         </button>
@@ -63,7 +78,7 @@ const LoginForm = ({ onClick }) => {
       </div>
       <div className='loginForm__footer'>
         Don't have an Upcamp account?
-        <button className='btn loginForm__link' onClick={onClick}>Sign Up</button>
+        <button className='btn loginForm__link' onClick={showSignup}>Sign Up</button>
       </div>
     </div>
   )

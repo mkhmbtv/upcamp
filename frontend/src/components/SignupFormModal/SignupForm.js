@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useAuth } from "../../context/AuthModal";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-const SignupForm = ({ onClick }) => {
+const SignupForm = () => {
+  const { setShowLoginForm, setShowSignupForm } = useAuth();
   const dispatch = useDispatch();
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -12,7 +15,12 @@ const SignupForm = ({ onClick }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+  const showLogin = () => {
+    setShowSignupForm(false);
+    setShowLoginForm(true);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     const user = {
@@ -24,6 +32,7 @@ const SignupForm = ({ onClick }) => {
     };
 
     return dispatch(sessionActions.signup(user))
+      .then(() => setShowSignupForm(false))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -91,7 +100,7 @@ const SignupForm = ({ onClick }) => {
       </div>
       <div className='signupForm__footer'>
         Have an account?
-        <button className='btn signupForm__link' onClick={onClick}>Sign In</button>
+        <button className='btn signupForm__link' onClick={showLogin}>Sign In</button>
       </div>
     </div>
   )

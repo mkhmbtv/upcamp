@@ -9,6 +9,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as spotsActions from './store/spots';
 import * as bookingsActions from './store/bookings';
 import ModalProvider from './context/Modal';
+import AuthProvider from './context/AuthModal';
 
 const store = configureStore();
 
@@ -25,9 +26,11 @@ function Root() {
   return (
     <ReduxProvider store={store}>
       <ModalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AuthProvider>
       </ModalProvider>
     </ReduxProvider>
   );

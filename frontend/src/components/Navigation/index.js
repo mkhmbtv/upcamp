@@ -2,7 +2,8 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getSessionUser } from "../../store/session";
 import ProfileButton from "./ProfileButton";
-import AuthModal from '../AuthModal';
+import LoginFormModal from "../LoginFormModal"
+import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
 
 const Navigation = ({ isLanding }) => {
@@ -17,10 +18,10 @@ const Navigation = ({ isLanding }) => {
     sessionLinks = (
       <>
         <li style={isLanding ? { color: '#fff'} : null} className='navbar__item'>
-          <AuthModal modal='login' />
+          <LoginFormModal />
         </li>
         <li style={isLanding ? { color: '#fff' } : null} className='navbar__item'>
-          <AuthModal modal='signup' />
+          <SignupFormModal />
         </li>
       </>
     );

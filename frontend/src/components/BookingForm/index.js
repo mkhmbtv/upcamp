@@ -4,21 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { book } from '../../store/bookings';
 import { getSessionUser } from '../../store/session';
+import { useAuth } from '../../context/AuthModal';
 import 'react-datepicker/dist/react-datepicker.css';
 import './BookingForm.css';
 
 const BookingForm = ({ spotId, price, maxGuests }) => {
-  const guestNums = [ ...Array(maxGuests).keys() ].map(i => i + 1);
+  const { setShowLoginForm } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const sessionUser = useSelector(getSessionUser);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [numGuests, setNumGuests] = useState(1);
   const [errors, setErrors] = useState([]);
 
+  const guestNums = [...Array(maxGuests).keys()].map(i => i + 1);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!sessionUser) {
+      setShowLoginForm(true);
+      return;
+    }
+
     setErrors([]);
     const booking = {
       spotId,
