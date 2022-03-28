@@ -5,9 +5,7 @@ import * as sessionActions from "../../store/session";
 
 const ProfileButton = ({ user }) => {
   const [showMenu, setShowMenu] = useState(false);
-
   const dispatch = useDispatch();
-  const sessionUser = useSelector(sessionActions.getSessionUser);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -42,7 +40,7 @@ const ProfileButton = ({ user }) => {
             <span>{user.email}</span>
           </li>
           <li className='profileDropdown__item'>
-            <Link to={`/${sessionUser.id}/bookings`}>Trips</Link>
+            <Link to={'/bookings'}>Trips</Link>
           </li>
           <li className='profileDropdown__item'>
             <button onClick={logout}>Log out</button>

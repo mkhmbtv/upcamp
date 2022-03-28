@@ -37,7 +37,7 @@ const BookingForm = ({ spotId, price, maxGuests }) => {
     };
     
     return dispatch(book(booking))
-      .then(() => navigate(`/${sessionUser.id}/bookings`))
+      .then(() => navigate('/bookings'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

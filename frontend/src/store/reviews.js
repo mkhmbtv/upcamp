@@ -35,7 +35,7 @@ export const writeReview = ({ spotId, title, body, recommended }) => async (disp
   });
 
   const data = await res.json();
-  if (res.ok) dispatch(setReview(data.review, spotId));
+  if (res.ok) dispatch(setReview(data.newReview, spotId));
   return res;
 };
 

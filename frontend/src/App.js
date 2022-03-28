@@ -29,7 +29,7 @@ function App() {
           <Route path='/spots' element={<Spots />} />
           <Route path='/s/:type' element={<SpotsByType />} />
           <Route path='/spots/:id' element={<SpotDetail />} />
-          <Route path='/:userId/bookings' element={<Bookings />} />
+          <Route path='/bookings' element={<Bookings />} />
         </Routes>
       </div>
       <Footer />

@@ -70,8 +70,8 @@ router.post(
       body,
       recommended,
     });
-    const createdReview = await Review.findByPk(review.id, { include: User });
-    res.json({ createdReview });
+    const newReview = await Review.findByPk(review.id, { include: User });
+    res.json({ newReview });
   }),
 );
 

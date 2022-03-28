@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { writeReview } from '../../store/reviews';
 import './SpotReviewForm.css';
 
-const SpotReviewForm = ({ spotId, handleClose }) => {
+const SpotReviewForm = ({ spotId }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [recommended, setRecommended] = useState(false);
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const SpotReviewForm = ({ spotId, handleClose }) => {
     };
     
     return dispatch(writeReview(review))
-      .then(() => handleClose())
+      .then(() => navigate(`/spots/${spotId}`))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
