@@ -1,5 +1,4 @@
 import { csrfFetch } from './csrf';
-
 const LOAD_BOOKINGS = 'bookings/loadBookings';
 const ADD_ONE_BOOKING = 'bookings/addOneBooking';
 const REMOVE_ONE_BOOKING = 'boookings/removeOneBooking';
@@ -85,10 +84,11 @@ const bookingsReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case LOAD_BOOKINGS:
-      newState = { ...state };
+      const bookings = {}
       action.bookings.forEach(booking => {
-        newState.byId[booking.id] = booking;
+        bookings[booking.id] = booking;
       })
+      newState = { byId: { ...bookings } };
       newState.allIds = Object.keys(newState.byId);
       return newState;
     case ADD_ONE_BOOKING:

@@ -11,6 +11,7 @@ router.use(requireAuth);
 
 router.get(
   '/',
+  requireAuth,
   asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({ 
       where: { userId: req.user.id },
