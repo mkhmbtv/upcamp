@@ -64,19 +64,8 @@ module.exports = (sequelize, DataTypes) => {
       through: 'SpotAmenity',
       otherKey: 'amenityId',
       foreignKey: 'spotId',
-      as: 'amenities',
     });
   };
-  Spot.findWithStuff = async (spotId) => {
-    const { Image, Review, SpotType, User } = require('./');
-    const spot = await Spot.findByPk(spotId, { include: [User, SpotType] });
-    const reviews = await Review.findAll({ where: { spotId } });
-    const images = await Image.findAll({ where: { spotId } });
-    const amenities = await spot.getAmenities();
-    spot.dataValues.Images = images.map((image) => image.id);
-    spot.dataValues.Reviews = reviews.map((review) => review.id);
-    spot.dataValues.Amenities = amenities.map((amenity) => amenity.id);
-    return spot;
-  };
+  
   return Spot;
 };
