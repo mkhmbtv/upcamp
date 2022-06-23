@@ -57,7 +57,6 @@ router.get('/:id(\\d+)',
     }
 
     const reviews = await spot.getReviews({
-      attributes: ['id', 'title', 'body', 'recommended', 'createdAt'],
       include: {
         model: User,
         attributes: ['id', 'firstName', 'lastName'],
