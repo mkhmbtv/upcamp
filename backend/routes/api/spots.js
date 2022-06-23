@@ -12,10 +12,15 @@ router.get(
   '/', 
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({
-      include: {
-        model: SpotType,
-        attributes: ['type'],
-      }
+      attributes: [
+        'id',
+        'city',
+        'state',
+        'country',
+        'name',
+        'thumbnailImageUrl',
+        'pricePerNight'
+      ]
     });
     res.json({ spots });
   }),

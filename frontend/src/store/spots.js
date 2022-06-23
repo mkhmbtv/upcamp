@@ -39,7 +39,7 @@ export const getSpotsByType = (spotType) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotType}`);
   const data = await res.json();
   dispatch(setSpots(data.spots));
-  return res;
+  return data;
 };
 
 const initialState = {
