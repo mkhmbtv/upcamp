@@ -6,8 +6,6 @@ import spots from './spots';
 import spotTypes from './spotTypes';
 import bookings from './bookings';
 import reviews from './reviews';
-import images from './images';
-import amenities from './amenities';
 import maps from './maps';
 
 const rootReducer = combineReducers({
@@ -16,8 +14,6 @@ const rootReducer = combineReducers({
   spotTypes,
   bookings,
   reviews,
-  images,
-  amenities,
   maps,
 });
 

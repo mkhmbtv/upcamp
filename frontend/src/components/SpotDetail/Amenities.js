@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import Icon from "./Icon";
 
 const Amenities = ({ spot }) => {
-  const amenities = useSelector((state) => state.amenities.byId);
-  const essential = spot.Amenities.filter(amenityId => amenities[amenityId].essential);
-  const nonEssential = spot.Amenities.filter(amenityId => !amenities[amenityId].essential);
+  const essential = spot.Amenities.filter(a => a.essential);
+  const nonEssential = spot.Amenities.filter(a => !a.essential);
 
   return ( 
       <div className='campspot__infoCards'>
@@ -25,23 +23,23 @@ const Amenities = ({ spot }) => {
         </div>
         <div className='infoCard'>
           <h3 className='infoCard__heading'>Essential</h3>
-          {essential.map((amenityId) => (
-            <div key={amenityId} className='infoCard__info'>
+          {essential.map((amenity) => (
+            <div key={amenity.id} className='infoCard__info'>
               <div className='infoCard__icon'>
-                <Icon iconTitle={amenities[amenityId].title} />
+                <Icon iconTitle={amenity.title} />
               </div>
-              <p>{amenities[amenityId].title}</p>
+              <p>{amenity.title}</p>
             </div>
           ))}
         </div>
         <div className='infoCard'>
           <h3 className='infoCard__heading'>Amenities</h3>
-          {nonEssential.map((amenityId) => (
-            <div key={amenityId} className='infoCard__info'>
+          {nonEssential.map((amenity) => (
+            <div key={amenity.id} className='infoCard__info'>
               <div className='infoCard__icon'>
-                <Icon iconTitle={amenities[amenityId].title} />
+                <Icon iconTitle={amenity.title} />
               </div>
-              <p>{amenities[amenityId].title}</p>
+              <p>{amenity.title}</p>
             </div>
           ))}
         </div>

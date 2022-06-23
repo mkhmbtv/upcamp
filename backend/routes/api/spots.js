@@ -31,27 +31,37 @@ router.get('/:id(\\d+)',
           attributes: ['id', 'url']
         },
         {
-          model: Review,
-          attributes: ['id', 'title', 'body', 'recommended']
-        },
-        {
           model: Amenity,
           attributes: ['id', 'title', 'essential'],
           through: { attributes: [] }
+        },
+        {
+          model: SpotType,
+          attributes: ['id', 'type']
         },
         {
           model: User,
           attributes: ['id', 'firstName', 'lastName']
         }
       ],
-      order: [[Review, 'createdAt'], [Image, 'createdAt']]
+      order: [[Image, 'createdAt']]
     })
     
     if (!spot) {
       return next(resourceNotFoundError('Spot', spotId));
     }
-    
-    res.json({ spot })
+
+    const reviews = await spot.getReviews({
+      attributes: ['id', 'title', 'body', 'recommended', 'createdAt'],
+      include: {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName'],
+      },
+      order: ['createdAt']
+    });
+    spot.dataValues.Reviews = reviews.map(review => review.id);
+
+    res.json({ spot, reviews });
   }),
 );
 
@@ -90,19 +100,6 @@ router.post(
     });
     const newReview = await Review.findByPk(review.id, { include: User });
     res.json({ newReview });
-  }),
-);
-
-
-router.get(
-  '/:id(\\d+)/amenities',
-  asyncHandler(async (req, res, next) => {
-    const spotId = parseInt(req.params.id, 10);
-    const spot = await Spot.findByPk(spotId);
-    if (!spot) return next(resourceNotFoundError('Spot', spotId));
-
-    const amenities = await spot.getAmenities();
-    res.json({ amenities });
   }),
 );
 

@@ -33,7 +33,7 @@ const SpotDetail = () => {
 
   return (
     <section className='campspot'>
-      <ImageSlider imageIds={spot.Images} />
+      <ImageSlider images={spot.Images} />
       <div className='campspot__overview'>
         <BookingForm spotId={spot.id} price={spot.pricePerNight} maxGuests={spot.maxCapacity} />
         <SpotInfo spot={spot} />

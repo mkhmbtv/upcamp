@@ -11,14 +11,12 @@ const setSpots = (spots) => {
   };
 };
 
-const addOneSpot = (spot, images, reviews, amenities) => {
+const addOneSpot = (spot, reviews) => {
   return {
     type: ADD_ONE_SPOT,
     payload: {
       spot,
-      images,
-      reviews,
-      amenities,
+      reviews
     }
   };
 };
@@ -27,19 +25,14 @@ export const getSpots = () => async (dispatch) => {
   const res = await csrfFetch('/api/spots');
   const data = await res.json();
   dispatch(setSpots(data.spots));
-  return res;
+  return data;
 };
 
 export const getOneSpot = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`);
-  const { spot, images, reviews, amenities } = await res.json();
-  dispatch(addOneSpot(
-    spot,
-    images,
-    reviews,
-    amenities
-  ));
-  return res;
+  const data = await res.json();
+  dispatch(addOneSpot(data.spot, data.reviews));
+  return data;
 };
 
 export const getSpotsByType = (spotType) => async (dispatch) => {

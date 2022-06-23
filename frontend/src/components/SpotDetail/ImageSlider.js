@@ -1,12 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 
-const ImageSlider = ({ imageIds }) => {
-  const images = useSelector((state) => state.images.byId);
-
+const ImageSlider = ({ images }) => {
   return (
     <Swiper
       modules={[Navigation]}
@@ -15,9 +12,9 @@ const ImageSlider = ({ imageIds }) => {
       navigation={true}
       loop={true}
     >
-      {imageIds.map((imgId) => (
-        <SwiperSlide key={imgId}>
-          <img src={images[imgId].url} alt='slide' />
+      {images.map((img) => (
+        <SwiperSlide key={img.id}>
+          <img src={img.url} alt='slide' />
         </SwiperSlide>
       ))}
     </Swiper>
