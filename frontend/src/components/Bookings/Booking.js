@@ -17,7 +17,7 @@ const Booking = ({ bookingId, upcoming }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (spot) {
+    if (spot && spot.Reviews) {
       setIsLoaded(true);
       return;
     }
