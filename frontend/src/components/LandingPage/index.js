@@ -1,20 +1,12 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getSpotTypes } from '../../store/spotTypes';
 import Navigation from '../Navigation';
 import Card from './Card';
 import './LandingPage.css';
 
-const LandingPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const spotTypeIds = useSelector((state) => state.spotTypes.allIds);
+const spotTypes = ['Tent camping', 'RV park', 'Cabin', 'Treehouse', 'Glamping'];
 
-  useEffect(() => {
-    if (spotTypeIds.length > 0) return;
-    dispatch(getSpotTypes());
-  }, [dispatch, spotTypeIds]);
+const LandingPage = () => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -31,8 +23,8 @@ const LandingPage = () => {
       <section className='types'>
         <h2>Find your next getaway</h2>
         <div className='cards'>
-          {spotTypeIds.map(spotTypeId => (
-            <Card key={spotTypeId} id={spotTypeId} />
+          {spotTypes.map(type => (
+            <Card key={type} spotType={type} />
           ))}
         </div>
       </section>
